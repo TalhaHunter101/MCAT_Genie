@@ -1,0 +1,164 @@
+🚀 Starting MCAT Study Schedule Planner Test Suite
+================================================================================
+
+🧪 Running test: standard_10_weeks
+   Description: Standard 10-week plan with 5 study days per week
+   URL: http://localhost:3000/full-plan?start_date=2025-10-06&test_date=2025-12-15&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D%2C5E%2C6B%2C7A%2C9B&availability=Mon%2CTue%2CThu%2CFri%2CSat&fl_weekday=Sat
+   ✅ Response received in 433ms
+   📊 Results:
+      Days: 70 (expected: 70)
+      Study Days: 50 (expected: 50)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: intensive_8_weeks
+   Description: Intensive 8-week plan with 7 study days per week
+   URL: http://localhost:3000/full-plan?start_date=2025-11-01&test_date=2025-12-27&priorities=1A%2C1B%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat%2CSun&fl_weekday=Sun
+   ✅ Response received in 152ms
+   📊 Results:
+      Days: 56 (expected: 56)
+      Study Days: 56 (expected: 56)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: part_time_16_weeks
+   Description: Part-time 16-week plan with 4 study days per week
+   URL: http://localhost:3000/full-plan?start_date=2025-09-01&test_date=2025-12-21&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D%2C5E%2C6B%2C7A%2C9B&availability=Mon%2CWed%2CFri%2CSat&fl_weekday=Sat
+   ✅ Response received in 233ms
+   📊 Results:
+      Days: 111 (expected: 112)
+      Study Days: 64 (expected: 64)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: minimal_priorities
+   Description: Minimal priorities (4 categories only)
+   URL: http://localhost:3000/full-plan?start_date=2025-10-15&test_date=2025-12-15&priorities=1A%2C1B%2C3A%2C3B&availability=Mon%2CTue%2CWed%2CThu%2CFri&fl_weekday=Fri
+   ✅ Response received in 142ms
+   📊 Results:
+      Days: 61 (expected: 61)
+      Study Days: 43 (expected: 44)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: extensive_priorities
+   Description: Extensive priorities (all 25 categories)
+   URL: http://localhost:3000/full-plan?start_date=2025-10-01&test_date=2025-12-15&priorities=1A%2C1B%2C1C%2C1D%2C2A%2C2B%2C3A%2C3B%2C4A%2C4B%2C5A%2C5B%2C5C%2C5D%2C5E%2C6A%2C6B%2C6C%2C7A%2C7B%2C9A%2C9B%2C9C%2C10A%2C10B&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat%2CSun&fl_weekday=Sat
+   ✅ Response received in 563ms
+   📊 Results:
+      Days: 75 (expected: 75)
+      Study Days: 75 (expected: 75)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: weekend_only
+   Description: Weekend-only study plan
+   URL: http://localhost:3000/full-plan?start_date=2025-10-04&test_date=2025-12-20&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B&availability=Sat%2CSun&fl_weekday=Sat
+   ✅ Response received in 91ms
+   📊 Results:
+      Days: 77 (expected: 77)
+      Study Days: 22 (expected: 22)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: weekday_only
+   Description: Weekday-only study plan
+   URL: http://localhost:3000/full-plan?start_date=2025-10-06&test_date=2025-12-13&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D&availability=Mon%2CTue%2CWed%2CThu%2CFri&fl_weekday=Fri
+   ✅ Response received in 243ms
+   📊 Results:
+      Days: 68 (expected: 68)
+      Study Days: 50 (expected: 49)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: short_6_weeks
+   Description: Short 6-week intensive plan
+   URL: http://localhost:3000/full-plan?start_date=2025-11-15&test_date=2025-12-27&priorities=1A%2C1B%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat%2CSun&fl_weekday=Sun
+   ✅ Response received in 112ms
+   📊 Results:
+      Days: 42 (expected: 42)
+      Study Days: 42 (expected: 42)
+      Score: 80.0% (B)
+      ❌ fullLengths: 1 errors
+         - Full-length tests not on sun: 2025-11-15, 2025-11-20, 2025-11-25, 2025-12-05, 2025-12-10
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: long_20_weeks
+   Description: Long 20-week extended plan
+   URL: http://localhost:3000/full-plan?start_date=2025-08-01&test_date=2025-12-21&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D%2C5E%2C6B%2C7A%2C9B&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat&fl_weekday=Sat
+   ✅ Response received in 434ms
+   📊 Results:
+      Days: 142 (expected: 142)
+      Study Days: 122 (expected: 122)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+🧪 Running test: irregular_availability
+   Description: Irregular availability pattern (Mon, Wed, Fri, Sun)
+   URL: http://localhost:3000/full-plan?start_date=2025-10-05&test_date=2025-12-14&priorities=1A%2C1B%2C1C%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5B&availability=Mon%2CWed%2CFri%2CSun&fl_weekday=Sun
+   ✅ Response received in 137ms
+   📊 Results:
+      Days: 70 (expected: 70)
+      Study Days: 40 (expected: 40)
+      Score: 100.0% (A)
+      ✅ fullLengths: PASS
+      ✅ phaseDistribution: PASS
+      ✅ neverRepeat: PASS
+      ✅ timeBudget: PASS
+      ✅ phaseStructure: PASS
+
+================================================================================
+📋 FINAL TEST SUMMARY
+================================================================================
+Total Tests: 10
+Passed Tests: 10
+Failed Tests: 0
+Overall Score: 98.0% (Grade: A)
+
+📊 Validation Summary:
+   fullLengths: 9/10 (90.0%)
+   phaseDistribution: 10/10 (100.0%)
+   neverRepeat: 10/10 (100.0%)
+   timeBudget: 10/10 (100.0%)
+   phaseStructure: 10/10 (100.0%)
+
+💾 Results saved to:
+   /Users/talhashafeeq/Documents/Upwork-projects/MCAT_Genie/tests/results/test-results-2025-09-30T09-58-48-442Z.json
+   /Users/talhashafeeq/Documents/Upwork-projects/MCAT_Genie/tests/results/test-summary-2025-09-30T09-58-48-442Z.json
+
+✅ Test suite completed!

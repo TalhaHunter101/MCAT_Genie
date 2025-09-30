@@ -1,0 +1,6030 @@
+[
+  {
+    "config": {
+      "name": "standard_10_weeks",
+      "description": "Standard 10-week plan with 5 study days per week",
+      "params": {
+        "start_date": "2025-10-06",
+        "test_date": "2025-12-15",
+        "priorities": "1A,1B,1D,3A,3B,4A,4B,5A,5D,5E,6B,7A,9B",
+        "availability": "Mon,Tue,Thu,Fri,Sat",
+        "fl_weekday": "Sat"
+      },
+      "expected": {
+        "days": 70,
+        "study_days": 50
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-10-06&test_date=2025-12-15&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D%2C5E%2C6B%2C7A%2C9B&availability=Mon%2CTue%2CThu%2CFri%2CSat&fl_weekday=Sat",
+      "responseTime": 221
+    },
+    "response": {
+      "actual": {
+        "total_days": 70,
+        "study_days": 50,
+        "break_days": 20,
+        "phase_1_days": 17,
+        "phase_2_days": 17,
+        "phase_3_days": 16,
+        "full_length_days": 6
+      },
+      "scheduleLength": 70
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-1.4, min=-35, max=7"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": false,
+        "errors": [
+          "Phase 3: 10 days (expected ~14.7, deviation: 4.7)"
+        ],
+        "distribution": {
+          "1": 17,
+          "2": 17,
+          "3": 10
+        },
+        "percentages": {
+          "1": "38.6",
+          "2": "38.6",
+          "3": "22.7"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 124,
+        "phase2Count": 94,
+        "overlapCount": 2
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "184.2",
+        "utilization": "76.8",
+        "daysOverBudget": 0,
+        "daysWithReview": 44,
+        "totalStudyDays": 44
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-10-06",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-07",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-09",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-10",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-13",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-14",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-16",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-17",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-20",
+              "resourceTime": 210,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-21",
+              "resourceTime": 220,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-23",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-24",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-27",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-28",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-30",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-31",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-11-04",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-06",
+              "resourceTime": 145,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-07",
+              "resourceTime": 165,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-11",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-13",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-14",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-18",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-20",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-22",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-25",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-27",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-29",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-12-01",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-02",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-04",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-06",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-09",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-11",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-13",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "60.0",
+      "passed": 3,
+      "total": 5,
+      "grade": "F"
+    },
+    "timestamp": "2025-09-30T09:51:25.692Z"
+  },
+  {
+    "config": {
+      "name": "intensive_8_weeks",
+      "description": "Intensive 8-week plan with 7 study days per week",
+      "params": {
+        "start_date": "2025-11-01",
+        "test_date": "2025-12-27",
+        "priorities": "1A,1B,3A,3B,4A,4B,5A,5D",
+        "availability": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+        "fl_weekday": "Sun"
+      },
+      "expected": {
+        "days": 56,
+        "study_days": 56
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-11-01&test_date=2025-12-27&priorities=1A%2C1B%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat%2CSun&fl_weekday=Sun",
+      "responseTime": 135
+    },
+    "response": {
+      "actual": {
+        "total_days": 56,
+        "study_days": 56,
+        "break_days": 0,
+        "phase_1_days": 19,
+        "phase_2_days": 19,
+        "phase_3_days": 18,
+        "full_length_days": 6
+      },
+      "scheduleLength": 56
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-1.4, min=-35, max=7"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": true,
+        "errors": [],
+        "distribution": {
+          "1": 19,
+          "2": 19,
+          "3": 12
+        },
+        "percentages": {
+          "1": "38.0",
+          "2": "38.0",
+          "3": "24.0"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 124,
+        "phase2Count": 83,
+        "overlapCount": 12
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "174.7",
+        "utilization": "72.8",
+        "daysOverBudget": 0,
+        "daysWithReview": 50,
+        "totalStudyDays": 50
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-11-01",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-04",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-05",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-06",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-07",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-08",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 210,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-11",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-12",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-13",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-14",
+              "resourceTime": 170,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-15",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 140,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-18",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 210,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-20",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 175,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-22",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-11-24",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-25",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-26",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-27",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-29",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-01",
+              "resourceTime": 50,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-02",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-03",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-04",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 80,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-06",
+              "resourceTime": 80,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-09",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-10",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-11",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-13",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-14",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-12-15",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-16",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-17",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-18",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-19",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-20",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-21",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-22",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-23",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-24",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-25",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-26",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "80.0",
+      "passed": 4,
+      "total": 5,
+      "grade": "B"
+    },
+    "timestamp": "2025-09-30T09:51:26.829Z"
+  },
+  {
+    "config": {
+      "name": "part_time_16_weeks",
+      "description": "Part-time 16-week plan with 4 study days per week",
+      "params": {
+        "start_date": "2025-09-01",
+        "test_date": "2025-12-21",
+        "priorities": "1A,1B,1D,3A,3B,4A,4B,5A,5D,5E,6B,7A,9B",
+        "availability": "Mon,Wed,Fri,Sat",
+        "fl_weekday": "Sat"
+      },
+      "expected": {
+        "days": 112,
+        "study_days": 64
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-09-01&test_date=2025-12-21&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D%2C5E%2C6B%2C7A%2C9B&availability=Mon%2CWed%2CFri%2CSat&fl_weekday=Sat",
+      "responseTime": 195
+    },
+    "response": {
+      "actual": {
+        "total_days": 111,
+        "study_days": 64,
+        "break_days": 47,
+        "phase_1_days": 22,
+        "phase_2_days": 21,
+        "phase_3_days": 21,
+        "full_length_days": 6
+      },
+      "scheduleLength": 111
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-8.4, min=-42, max=14"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": true,
+        "errors": [],
+        "distribution": {
+          "1": 22,
+          "2": 21,
+          "3": 15
+        },
+        "percentages": {
+          "1": "37.9",
+          "2": "36.2",
+          "3": "25.9"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 157,
+        "phase2Count": 110,
+        "overlapCount": 3
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "183.7",
+        "utilization": "76.5",
+        "daysOverBudget": 0,
+        "daysWithReview": 58,
+        "totalStudyDays": 58
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-09-01",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-03",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-05",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-08",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-10",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-12",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-13",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-15",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-17",
+              "resourceTime": 210,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-19",
+              "resourceTime": 220,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-22",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-24",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-26",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-27",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-29",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-01",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-03",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-06",
+              "resourceTime": 170,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-08",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-10",
+              "resourceTime": 140,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-11",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-13",
+              "resourceTime": 210,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-10-15",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-17",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-20",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-22",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-24",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-25",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-27",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-29",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-31",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-05",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-07",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-08",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 145,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-12",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-14",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 25,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-22",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 80,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-11-26",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-29",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-01",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-03",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-06",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-10",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-13",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-15",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-17",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-19",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-20",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "80.0",
+      "passed": 4,
+      "total": 5,
+      "grade": "B"
+    },
+    "timestamp": "2025-09-30T09:51:28.027Z"
+  },
+  {
+    "config": {
+      "name": "minimal_priorities",
+      "description": "Minimal priorities (4 categories only)",
+      "params": {
+        "start_date": "2025-10-15",
+        "test_date": "2025-12-15",
+        "priorities": "1A,1B,3A,3B",
+        "availability": "Mon,Tue,Wed,Thu,Fri",
+        "fl_weekday": "Fri"
+      },
+      "expected": {
+        "days": 61,
+        "study_days": 44
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-10-15&test_date=2025-12-15&priorities=1A%2C1B%2C3A%2C3B&availability=Mon%2CTue%2CWed%2CThu%2CFri&fl_weekday=Fri",
+      "responseTime": 102
+    },
+    "response": {
+      "actual": {
+        "total_days": 61,
+        "study_days": 43,
+        "break_days": 18,
+        "phase_1_days": 15,
+        "phase_2_days": 14,
+        "phase_3_days": 14,
+        "full_length_days": 6
+      },
+      "scheduleLength": 61
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-1.4, min=-35, max=7"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": false,
+        "errors": [
+          "Phase 3: 8 days (expected ~12.3, deviation: 4.3)"
+        ],
+        "distribution": {
+          "1": 15,
+          "2": 14,
+          "3": 8
+        },
+        "percentages": {
+          "1": "40.5",
+          "2": "37.8",
+          "3": "21.6"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 90,
+        "phase2Count": 52,
+        "overlapCount": 6
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "174.3",
+        "utilization": "72.6",
+        "daysOverBudget": 0,
+        "daysWithReview": 37,
+        "totalStudyDays": 37
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-10-15",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-16",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-20",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-21",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-22",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-23",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-27",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-28",
+              "resourceTime": 170,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-29",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-30",
+              "resourceTime": 175,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-04",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-05",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-06",
+              "resourceTime": 175,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-11-11",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-12",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-13",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 55,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-18",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-20",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-25",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-26",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-27",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-01",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-02",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-12-03",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-04",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-09",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-10",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-11",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "60.0",
+      "passed": 3,
+      "total": 5,
+      "grade": "F"
+    },
+    "timestamp": "2025-09-30T09:51:29.131Z"
+  },
+  {
+    "config": {
+      "name": "extensive_priorities",
+      "description": "Extensive priorities (all 25 categories)",
+      "params": {
+        "start_date": "2025-10-01",
+        "test_date": "2025-12-15",
+        "priorities": "1A,1B,1C,1D,2A,2B,3A,3B,4A,4B,5A,5B,5C,5D,5E,6A,6B,6C,7A,7B,9A,9B,9C,10A,10B",
+        "availability": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+        "fl_weekday": "Sat"
+      },
+      "expected": {
+        "days": 75,
+        "study_days": 75
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-10-01&test_date=2025-12-15&priorities=1A%2C1B%2C1C%2C1D%2C2A%2C2B%2C3A%2C3B%2C4A%2C4B%2C5A%2C5B%2C5C%2C5D%2C5E%2C6A%2C6B%2C6C%2C7A%2C7B%2C9A%2C9B%2C9C%2C10A%2C10B&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat%2CSun&fl_weekday=Sat",
+      "responseTime": 292
+    },
+    "response": {
+      "actual": {
+        "total_days": 75,
+        "study_days": 75,
+        "break_days": 0,
+        "phase_1_days": 25,
+        "phase_2_days": 25,
+        "phase_3_days": 25,
+        "full_length_days": 6
+      },
+      "scheduleLength": 75
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-1.4, min=-35, max=7"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": true,
+        "errors": [],
+        "distribution": {
+          "1": 25,
+          "2": 25,
+          "3": 19
+        },
+        "percentages": {
+          "1": "36.2",
+          "2": "36.2",
+          "3": "27.5"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 191,
+        "phase2Count": 139,
+        "overlapCount": 2
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "187.0",
+        "utilization": "77.9",
+        "daysOverBudget": 0,
+        "daysWithReview": 69,
+        "totalStudyDays": 69
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-10-01",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-02",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-03",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-05",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-06",
+              "resourceTime": 220,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-07",
+              "resourceTime": 215,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-08",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-09",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-10",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-12",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-13",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-14",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-15",
+              "resourceTime": 125,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-16",
+              "resourceTime": 210,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-17",
+              "resourceTime": 220,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-19",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-20",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-21",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-22",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-23",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-24",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-26",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-27",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-28",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-29",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-10-30",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-31",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-02",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 165,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-04",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-05",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-06",
+              "resourceTime": 145,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-07",
+              "resourceTime": 165,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-09",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 170,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-11",
+              "resourceTime": 55,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-12",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-13",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-14",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-15",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-16",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-18",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 165,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-20",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 50,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-22",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-23",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-25",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-11-26",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-27",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-29",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-30",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-01",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-02",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-03",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-04",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-06",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-07",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-09",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-10",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-11",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-13",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-14",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "80.0",
+      "passed": 4,
+      "total": 5,
+      "grade": "B"
+    },
+    "timestamp": "2025-09-30T09:51:30.427Z"
+  },
+  {
+    "config": {
+      "name": "weekend_only",
+      "description": "Weekend-only study plan",
+      "params": {
+        "start_date": "2025-10-04",
+        "test_date": "2025-12-20",
+        "priorities": "1A,1B,1D,3A,3B,4A,4B",
+        "availability": "Sat,Sun",
+        "fl_weekday": "Sat"
+      },
+      "expected": {
+        "days": 77,
+        "study_days": 22
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-10-04&test_date=2025-12-20&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B&availability=Sat%2CSun&fl_weekday=Sat",
+      "responseTime": 82
+    },
+    "response": {
+      "actual": {
+        "total_days": 77,
+        "study_days": 22,
+        "break_days": 55,
+        "phase_1_days": 8,
+        "phase_2_days": 7,
+        "phase_3_days": 7,
+        "full_length_days": 6
+      },
+      "scheduleLength": 77
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-1.4, min=-35, max=7"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": false,
+        "errors": [
+          "Phase 1: 8 days (expected ~5.3, deviation: 2.7)",
+          "Phase 3: 1 days (expected ~5.3, deviation: 4.3)"
+        ],
+        "distribution": {
+          "1": 8,
+          "2": 7,
+          "3": 1
+        },
+        "percentages": {
+          "1": "50.0",
+          "2": "43.8",
+          "3": "6.3"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 63,
+        "phase2Count": 42,
+        "overlapCount": 0
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "182.8",
+        "utilization": "76.2",
+        "daysOverBudget": 0,
+        "daysWithReview": 16,
+        "totalStudyDays": 16
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-10-05",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-12",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-19",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-26",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-02",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-09",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-15",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-16",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-11-22",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-23",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-29",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-30",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-06",
+              "resourceTime": 145,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-07",
+              "resourceTime": 165,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-13",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-12-14",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "60.0",
+      "passed": 3,
+      "total": 5,
+      "grade": "F"
+    },
+    "timestamp": "2025-09-30T09:51:31.512Z"
+  },
+  {
+    "config": {
+      "name": "weekday_only",
+      "description": "Weekday-only study plan",
+      "params": {
+        "start_date": "2025-10-06",
+        "test_date": "2025-12-13",
+        "priorities": "1A,1B,1D,3A,3B,4A,4B,5A,5D",
+        "availability": "Mon,Tue,Wed,Thu,Fri",
+        "fl_weekday": "Fri"
+      },
+      "expected": {
+        "days": 68,
+        "study_days": 49
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-10-06&test_date=2025-12-13&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D&availability=Mon%2CTue%2CWed%2CThu%2CFri&fl_weekday=Fri",
+      "responseTime": 122
+    },
+    "response": {
+      "actual": {
+        "total_days": 68,
+        "study_days": 50,
+        "break_days": 18,
+        "phase_1_days": 17,
+        "phase_2_days": 17,
+        "phase_3_days": 16,
+        "full_length_days": 6
+      },
+      "scheduleLength": 68
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-1.4, min=-35, max=7"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": false,
+        "errors": [
+          "Phase 3: 10 days (expected ~14.7, deviation: 4.7)"
+        ],
+        "distribution": {
+          "1": 17,
+          "2": 17,
+          "3": 10
+        },
+        "percentages": {
+          "1": "38.6",
+          "2": "38.6",
+          "3": "22.7"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 115,
+        "phase2Count": 83,
+        "overlapCount": 3
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "177.5",
+        "utilization": "74.0",
+        "daysOverBudget": 0,
+        "daysWithReview": 44,
+        "totalStudyDays": 44
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-10-06",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-07",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-08",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-09",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-13",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-14",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-15",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-16",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-20",
+              "resourceTime": 210,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-21",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-22",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-23",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-27",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-28",
+              "resourceTime": 170,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-29",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-30",
+              "resourceTime": 140,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-11-04",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-05",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-06",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-11",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-12",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-13",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-18",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-20",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 25,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-25",
+              "resourceTime": 80,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-26",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-27",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 80,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-12-01",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-02",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-03",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-04",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-09",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-10",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-11",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "60.0",
+      "passed": 3,
+      "total": 5,
+      "grade": "F"
+    },
+    "timestamp": "2025-09-30T09:51:32.636Z"
+  },
+  {
+    "config": {
+      "name": "short_6_weeks",
+      "description": "Short 6-week intensive plan",
+      "params": {
+        "start_date": "2025-11-15",
+        "test_date": "2025-12-27",
+        "priorities": "1A,1B,3A,3B,4A,4B,5A,5D",
+        "availability": "Mon,Tue,Wed,Thu,Fri,Sat,Sun",
+        "fl_weekday": "Sun"
+      },
+      "expected": {
+        "days": 42,
+        "study_days": 42
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-11-15&test_date=2025-12-27&priorities=1A%2C1B%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat%2CSun&fl_weekday=Sun",
+      "responseTime": 160
+    },
+    "response": {
+      "actual": {
+        "total_days": 42,
+        "study_days": 42,
+        "break_days": 0,
+        "phase_1_days": 14,
+        "phase_2_days": 14,
+        "phase_3_days": 14,
+        "full_length_days": 6
+      },
+      "scheduleLength": 42
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Full-length tests not on sun: 2025-11-15, 2025-11-20, 2025-11-25, 2025-12-05, 2025-12-10",
+          "Extremely uneven full-length spacing: avg=1.0, min=-20, max=15"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": false,
+        "errors": [
+          "Phase 3: 8 days (expected ~12.0, deviation: 4.0)"
+        ],
+        "distribution": {
+          "1": 14,
+          "2": 14,
+          "3": 8
+        },
+        "percentages": {
+          "1": "38.9",
+          "2": "38.9",
+          "3": "22.2"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 99,
+        "phase2Count": 69,
+        "overlapCount": 3
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "175.7",
+        "utilization": "73.2",
+        "daysOverBudget": 0,
+        "daysWithReview": 36,
+        "totalStudyDays": 36
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-11-16",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-18",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-22",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-23",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 240,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-26",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-27",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-29",
+              "resourceTime": 170,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-01",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-02",
+              "resourceTime": 140,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-12-03",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-04",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-06",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-07",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-09",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-11",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-13",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-14",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-15",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-16",
+              "resourceTime": 25,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-17",
+              "resourceTime": 80,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-12-18",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-12-19",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-20",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-21",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-22",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-23",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-24",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-25",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-26",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "60.0",
+      "passed": 3,
+      "total": 5,
+      "grade": "F"
+    },
+    "timestamp": "2025-09-30T09:51:33.799Z"
+  },
+  {
+    "config": {
+      "name": "long_20_weeks",
+      "description": "Long 20-week extended plan",
+      "params": {
+        "start_date": "2025-08-01",
+        "test_date": "2025-12-21",
+        "priorities": "1A,1B,1D,3A,3B,4A,4B,5A,5D,5E,6B,7A,9B",
+        "availability": "Mon,Tue,Wed,Thu,Fri,Sat",
+        "fl_weekday": "Sat"
+      },
+      "expected": {
+        "days": 142,
+        "study_days": 122
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-08-01&test_date=2025-12-21&priorities=1A%2C1B%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5D%2C5E%2C6B%2C7A%2C9B&availability=Mon%2CTue%2CWed%2CThu%2CFri%2CSat&fl_weekday=Sat",
+      "responseTime": 387
+    },
+    "response": {
+      "actual": {
+        "total_days": 142,
+        "study_days": 122,
+        "break_days": 20,
+        "phase_1_days": 41,
+        "phase_2_days": 41,
+        "phase_3_days": 40,
+        "full_length_days": 6
+      },
+      "scheduleLength": 142
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=8.4, min=-42, max=84"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": true,
+        "errors": [],
+        "distribution": {
+          "1": 41,
+          "2": 41,
+          "3": 34
+        },
+        "percentages": {
+          "1": "35.3",
+          "2": "35.3",
+          "3": "29.3"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 254,
+        "phase2Count": 171,
+        "overlapCount": 21
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "180.5",
+        "utilization": "75.2",
+        "daysOverBudget": 0,
+        "daysWithReview": 116,
+        "totalStudyDays": 116
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-08-01",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-04",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-05",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-06",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-07",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-08",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-09",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-11",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-12",
+              "resourceTime": 180,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-13",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-14",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-15",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-16",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-18",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-19",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-20",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-21",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-22",
+              "resourceTime": 170,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-25",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-26",
+              "resourceTime": 140,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-27",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-28",
+              "resourceTime": 180,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-29",
+              "resourceTime": 180,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-08-30",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-01",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-02",
+              "resourceTime": 125,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-03",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-04",
+              "resourceTime": 175,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-05",
+              "resourceTime": 180,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-06",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-08",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-09",
+              "resourceTime": 95,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-10",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-11",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-12",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-15",
+              "resourceTime": 180,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-16",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-17",
+              "resourceTime": 170,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-18",
+              "resourceTime": 140,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-19",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-20",
+              "resourceTime": 175,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-09-22",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-23",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-24",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-25",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-26",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-27",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-29",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-09-30",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-01",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-02",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-03",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-06",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-07",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-08",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-09",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-10",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-11",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-13",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-14",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-15",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-16",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-17",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-18",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-20",
+              "resourceTime": 55,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-21",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-22",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-23",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-24",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-27",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-28",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-29",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-30",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-31",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-01",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-04",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-05",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-06",
+              "resourceTime": 105,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-07",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-08",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-11-11",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-13",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-14",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-18",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-20",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-22",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-25",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-26",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-27",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-11-29",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-01",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-02",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-03",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-04",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-06",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-09",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-10",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-11",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-13",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-15",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-16",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-17",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-18",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-19",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-20",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "80.0",
+      "passed": 4,
+      "total": 5,
+      "grade": "B"
+    },
+    "timestamp": "2025-09-30T09:51:35.189Z"
+  },
+  {
+    "config": {
+      "name": "irregular_availability",
+      "description": "Irregular availability pattern (Mon, Wed, Fri, Sun)",
+      "params": {
+        "start_date": "2025-10-05",
+        "test_date": "2025-12-14",
+        "priorities": "1A,1B,1C,1D,3A,3B,4A,4B,5A,5B",
+        "availability": "Mon,Wed,Fri,Sun",
+        "fl_weekday": "Sun"
+      },
+      "expected": {
+        "days": 70,
+        "study_days": 40
+      }
+    },
+    "request": {
+      "url": "http://localhost:3000/full-plan?start_date=2025-10-05&test_date=2025-12-14&priorities=1A%2C1B%2C1C%2C1D%2C3A%2C3B%2C4A%2C4B%2C5A%2C5B&availability=Mon%2CWed%2CFri%2CSun&fl_weekday=Sun",
+      "responseTime": 169
+    },
+    "response": {
+      "actual": {
+        "total_days": 70,
+        "study_days": 40,
+        "break_days": 30,
+        "phase_1_days": 14,
+        "phase_2_days": 13,
+        "phase_3_days": 13,
+        "full_length_days": 6
+      },
+      "scheduleLength": 70
+    },
+    "validations": {
+      "fullLengths": {
+        "valid": false,
+        "errors": [
+          "Extremely uneven full-length spacing: avg=-1.4, min=-35, max=7"
+        ],
+        "count": 6
+      },
+      "phaseDistribution": {
+        "valid": false,
+        "errors": [
+          "Phase 3: 7 days (expected ~11.3, deviation: 4.3)"
+        ],
+        "distribution": {
+          "1": 14,
+          "2": 13,
+          "3": 7
+        },
+        "percentages": {
+          "1": "41.2",
+          "2": "38.2",
+          "3": "20.6"
+        }
+      },
+      "neverRepeat": {
+        "valid": true,
+        "errors": [],
+        "phase1Count": 97,
+        "phase2Count": 72,
+        "overlapCount": 2
+      },
+      "timeBudget": {
+        "valid": true,
+        "errors": [],
+        "avgTime": "185.6",
+        "utilization": "77.3",
+        "daysOverBudget": 0,
+        "daysWithReview": 34,
+        "totalStudyDays": 34
+      },
+      "phaseStructure": {
+        "valid": true,
+        "errors": [],
+        "phaseStats": {
+          "1": [
+            {
+              "date": "2025-10-06",
+              "resourceTime": 205,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-08",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-10",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-13",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-15",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-17",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-20",
+              "resourceTime": 200,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-22",
+              "resourceTime": 155,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-24",
+              "resourceTime": 140,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-27",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-29",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-10-31",
+              "resourceTime": 190,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-03",
+              "resourceTime": 195,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-05",
+              "resourceTime": 185,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "science_content",
+                "science_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "2": [
+            {
+              "date": "2025-11-07",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-10",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-12",
+              "resourceTime": 145,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-14",
+              "resourceTime": 165,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-16",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-17",
+              "resourceTime": 170,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-19",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-21",
+              "resourceTime": 75,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-23",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-24",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-26",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-28",
+              "resourceTime": 195,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            },
+            {
+              "date": "2025-11-30",
+              "resourceTime": 135,
+              "hasRequiredBlocks": false,
+              "blockTypes": [
+                "science_passages",
+                "uworld_set",
+                "extra_discretes",
+                "cars"
+              ]
+            }
+          ],
+          "3": [
+            {
+              "date": "2025-12-01",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-03",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-05",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-07",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-08",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-10",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            },
+            {
+              "date": "2025-12-12",
+              "resourceTime": 230,
+              "hasRequiredBlocks": true,
+              "blockTypes": [
+                "aamc_sets",
+                "aamc_CARS_passages"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "score": {
+      "percentage": "60.0",
+      "passed": 3,
+      "total": 5,
+      "grade": "F"
+    },
+    "timestamp": "2025-09-30T09:51:36.361Z"
+  }
+]

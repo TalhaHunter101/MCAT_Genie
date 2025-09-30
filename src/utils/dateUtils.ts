@@ -1,10 +1,16 @@
 export class DateUtils {
   static parseDate(dateStr: string): Date {
-    return new Date(dateStr + 'T00:00:00');
+    // Parse as local date to avoid timezone issues
+    const [year, month, day] = dateStr.split('-').map(Number);
+    return new Date(year, month - 1, day);
   }
 
   static formatDate(date: Date): string {
-    return date.toISOString().split('T')[0];
+    // Format as local date to avoid timezone issues
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   static getDaysBetween(startDate: Date, endDate: Date): number {
@@ -60,20 +66,40 @@ export class DateUtils {
     const endDate = new Date(testDate);
     endDate.setDate(endDate.getDate() - 7); // Exclude last 7 days
     
-    const studyDays = this.generateDateRange(startDate, endDate)
+    // Get ALL days that match the fl_weekday, not just study days
+    const flDays = this.generateDateRange(startDate, endDate)
       .filter(date => this.isWeekday(date, flWeekday));
     
-    if (studyDays.length < count) {
-      throw new Error(`Not enough ${flWeekday} days for ${count} full lengths`);
+    if (flDays.length < count) {
+      // If not enough days of the specified weekday, use any available days
+      // This handles edge cases where the study period is short
+      const allDays = this.generateDateRange(startDate, endDate);
+      if (allDays.length < count) {
+        throw new Error(`Not enough days for ${count} full lengths (only ${allDays.length} days available)`);
+      }
+      
+      // Use all available days and distribute evenly
+      const interval = Math.floor(allDays.length / count);
+      const flDates: Date[] = [];
+      
+      for (let i = 0; i < count; i++) {
+        const index = i * interval;
+        if (index < allDays.length) {
+          flDates.push(allDays[index]);
+        }
+      }
+      
+      return flDates.sort((a, b) => a.getTime() - b.getTime());
     }
     
-    const interval = Math.floor(studyDays.length / (count - 1));
+    // Distribute evenly across available days of the specified weekday
+    const interval = Math.floor(flDays.length / count);
     const flDates: Date[] = [];
     
     for (let i = 0; i < count; i++) {
       const index = i * interval;
-      if (index < studyDays.length) {
-        flDates.push(studyDays[index]);
+      if (index < flDays.length) {
+        flDates.push(flDays[index]);
       }
     }
     
@@ -87,6 +113,46 @@ export class DateUtils {
       return 2;
     } else {
       return 3;
+    }
+  }
+
+  /**
+   * Calculate dynamic time targets based on study duration
+   * Shorter study periods need more aggressive time utilization
+   */
+  static calculateTimeTargets(totalStudyDays: number): {
+    phase1Target: number;
+    phase2Target: number;
+    phase3Target: number;
+    strategy: string;
+  } {
+    const daysPerPhase = totalStudyDays / 3;
+    
+    // Determine strategy based on study duration
+    if (totalStudyDays <= 42) {
+      // Short study period (≤6 weeks) - aggressive utilization
+      return {
+        phase1Target: 220, // Use most of the 240 min budget
+        phase2Target: 230, // Very aggressive
+        phase3Target: 235, // Maximum utilization
+        strategy: 'aggressive'
+      };
+    } else if (totalStudyDays <= 84) {
+      // Medium study period (7-12 weeks) - balanced approach
+      return {
+        phase1Target: 200, // Preserve some resources for later phases
+        phase2Target: 220, // Moderate utilization
+        phase3Target: 225, // Good utilization
+        strategy: 'balanced'
+      };
+    } else {
+      // Long study period (>12 weeks) - conservative approach
+      return {
+        phase1Target: 180, // Preserve most resources for later phases
+        phase2Target: 200, // Conservative utilization
+        phase3Target: 210, // Moderate utilization
+        strategy: 'conservative'
+      };
     }
   }
 }

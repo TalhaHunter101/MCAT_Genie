@@ -1,0 +1,601 @@
+{
+  "metadata": {
+    "generatedAt": "2025-09-30T09:49:46.339Z",
+    "totalRuns": 2,
+    "latestRun": "test-results-2025-09-30T09-49-46-267Z.json",
+    "oldestRun": "test-results-2025-09-30T09-42-13-576Z.json"
+  },
+  "trendAnalysis": {
+    "overallScores": [
+      {
+        "timestamp": "2025-09-30T09:49:34.632Z",
+        "score": 50,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:42:01.719Z",
+        "score": 44,
+        "passedTests": 10,
+        "totalTests": 10
+      }
+    ],
+    "validationTrends": {
+      "fullLengths": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        }
+      ],
+      "phaseDistribution": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 2,
+          "total": 10,
+          "percentage": 20
+        }
+      ],
+      "neverRepeat": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        }
+      ],
+      "timeBudget": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        }
+      ],
+      "phaseStructure": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 1,
+          "total": 10,
+          "percentage": 10
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        }
+      ]
+    },
+    "testSpecificTrends": {
+      "standard_10_weeks": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "intensive_8_weeks": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "part_time_16_weeks": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "minimal_priorities": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "extensive_priorities": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "60.0",
+          "grade": "F"
+        }
+      ],
+      "weekend_only": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "weekday_only": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "short_6_weeks": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "long_20_weeks": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "60.0",
+          "grade": "F"
+        }
+      ],
+      "irregular_availability": [
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ]
+    }
+  },
+  "configurationAnalysis": {
+    "byStudyDays": {
+      "2": {
+        "scores": [
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 2
+      },
+      "4": {
+        "scores": [
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 45,
+        "count": 4
+      },
+      "5": {
+        "scores": [
+          40,
+          40,
+          40,
+          40,
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 6
+      },
+      "6": {
+        "scores": [
+          60,
+          60
+        ],
+        "average": 60,
+        "count": 2
+      },
+      "7": {
+        "scores": [
+          60,
+          60,
+          40,
+          40,
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 6
+      }
+    },
+    "byPriorities": {
+      "4": {
+        "scores": [
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 2
+      },
+      "7": {
+        "scores": [
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 2
+      },
+      "8": {
+        "scores": [
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 45,
+        "count": 4
+      },
+      "9": {
+        "scores": [
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 2
+      },
+      "10": {
+        "scores": [
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 2
+      },
+      "13": {
+        "scores": [
+          40,
+          60,
+          60,
+          40,
+          40,
+          60
+        ],
+        "average": 50,
+        "count": 6
+      },
+      "25": {
+        "scores": [
+          60,
+          60
+        ],
+        "average": 60,
+        "count": 2
+      }
+    },
+    "byAvailability": {
+      "Mon,Tue,Thu,Fri,Sat": {
+        "scores": [
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 2
+      },
+      "Mon,Tue,Wed,Thu,Fri,Sat,Sun": {
+        "scores": [
+          60,
+          60,
+          40,
+          40,
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 6
+      },
+      "Mon,Wed,Fri,Sat": {
+        "scores": [
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 2
+      },
+      "Mon,Tue,Wed,Thu,Fri": {
+        "scores": [
+          40,
+          40,
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 4
+      },
+      "Sat,Sun": {
+        "scores": [
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 2
+      },
+      "Mon,Tue,Wed,Thu,Fri,Sat": {
+        "scores": [
+          60,
+          60
+        ],
+        "average": 60,
+        "count": 2
+      },
+      "Mon,Wed,Fri,Sun": {
+        "scores": [
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 2
+      }
+    },
+    "byDuration": {
+      "9_12_weeks": {
+        "scores": [
+          40,
+          40,
+          60,
+          60,
+          40,
+          40,
+          40,
+          40,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 45,
+        "count": 12
+      },
+      "7_8_weeks": {
+        "scores": [
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 2
+      },
+      "13_16_weeks": {
+        "scores": [
+          60,
+          40
+        ],
+        "average": 50,
+        "count": 2
+      },
+      "6_weeks_or_less": {
+        "scores": [
+          40,
+          40
+        ],
+        "average": 40,
+        "count": 2
+      },
+      "17_weeks_or_more": {
+        "scores": [
+          60,
+          60
+        ],
+        "average": 60,
+        "count": 2
+      }
+    }
+  },
+  "pairwiseComparisons": [
+    {
+      "test1": "test-results-2025-09-30T09-49-46-267Z.json",
+      "test2": "test-results-2025-09-30T09-42-13-576Z.json",
+      "timestamp1": "2025-09-30T09:49:34.632Z",
+      "timestamp2": "2025-09-30T09:42:01.719Z",
+      "differences": [
+        {
+          "testName": "intensive_8_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "part_time_16_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekend_only",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "bestPerformingConfigurations": [],
+    "worstPerformingConfigurations": [
+      {
+        "type": "study_days_per_week",
+        "value": "2",
+        "averageScore": "50.0",
+        "testCount": 2
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "4",
+        "averageScore": "45.0",
+        "testCount": 4
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "5",
+        "averageScore": "40.0",
+        "testCount": 6
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "6",
+        "averageScore": "60.0",
+        "testCount": 2
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "7",
+        "averageScore": "50.0",
+        "testCount": 6
+      }
+    ],
+    "mostStableConfigurations": [
+      {
+        "type": "study_days_per_week",
+        "value": "5",
+        "averageScore": "40.0",
+        "variance": "0.00",
+        "testCount": 6
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "6",
+        "averageScore": "60.0",
+        "variance": "0.00",
+        "testCount": 2
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "4",
+        "averageScore": "45.0",
+        "variance": "75.00",
+        "testCount": 4
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "2",
+        "averageScore": "50.0",
+        "variance": "100.00",
+        "testCount": 2
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "7",
+        "averageScore": "50.0",
+        "variance": "100.00",
+        "testCount": 6
+      }
+    ],
+    "recommendations": [
+      {
+        "type": "positive_trend",
+        "message": "Performance has improved by 6.0% over time",
+        "priority": "info"
+      },
+      {
+        "type": "validation_concern",
+        "message": "fullLengths validation passing at only 0.0%",
+        "priority": "high"
+      },
+      {
+        "type": "validation_concern",
+        "message": "phaseDistribution validation passing at only 40.0%",
+        "priority": "high"
+      },
+      {
+        "type": "validation_concern",
+        "message": "phaseStructure validation passing at only 10.0%",
+        "priority": "high"
+      }
+    ]
+  }
+}

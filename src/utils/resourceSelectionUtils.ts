@@ -295,6 +295,15 @@ export class ResourceSelectionUtils {
       );
       // Place high-yield first, then low-yield as fallback
       candidates = [...highYieldCandidates, ...lowYieldCandidates];
+      
+      // If no high-yield candidates remain after filtering, ensure we have fallback options
+      if (highYieldCandidates.length === 0 && lowYieldCandidates.length === 0) {
+        // Last resort: use any available resources regardless of high-yield status
+        candidates = availableResources.filter(resource => {
+          const slotMatch = this.matchesSlotType(resource, slotType);
+          return slotMatch;
+        });
+      }
     }
 
     // 3. Filter by never-repeat constraint (except AAMC/UWorld which can repeat)
@@ -306,23 +315,44 @@ export class ResourceSelectionUtils {
       // Phase 3 (AAMC) and UWorld: Allow repetition across days
       // Only filter same-day duplicates (done in next step)
     } else {
-      // Phases 1-2: Strict never-repeat for KA/Kaplan/JW
-      candidates = candidates.filter(resource => 
+      // Phases 1-2: Strict never-repeat for KA/Kaplan/JW, but allow fallback if exhausted
+      const unusedCandidates = candidates.filter(resource => 
         !usedResources.has(this.getResourceUid(resource))
       );
+      
+      // If we have unused candidates, use them. Otherwise, allow repetition as last resort
+      if (unusedCandidates.length > 0) {
+        candidates = unusedCandidates;
+      } else if (candidates.length === 0) {
+        // Last resort: allow any matching resources even if used before
+        candidates = availableResources.filter(resource => {
+          const slotMatch = this.matchesSlotType(resource, slotType);
+          return slotMatch;
+        });
+      }
     }
 
-    // 4. Filter by same-day deduplication
-    candidates = candidates.filter(resource => 
+    // 4. Filter by same-day deduplication (but allow if no alternatives)
+    const nonDuplicateCandidates = candidates.filter(resource => 
       !sameDayUsed.has(this.getResourceUid(resource))
     );
+    
+    // Use non-duplicates if available, otherwise allow duplicates to avoid empty blocks
+    if (nonDuplicateCandidates.length > 0) {
+      candidates = nonDuplicateCandidates;
+    }
 
     // 5. Phase-specific filtering
     if (phase === 2) {
-      // Phase 2 discretes must not be used in Phase 1
-      candidates = candidates.filter(resource => 
+      // Phase 2 discretes must not be used in Phase 1, but allow if no alternatives
+      const nonPhase1Candidates = candidates.filter(resource => 
         !this.isUsedInPhase1(resource, usedResources)
       );
+      
+      // Use non-Phase1 candidates if available, otherwise allow Phase1 resources to avoid empty blocks
+      if (nonPhase1Candidates.length > 0) {
+        candidates = nonPhase1Candidates;
+      }
     }
 
     // 6. Convert to ResourceSelection objects

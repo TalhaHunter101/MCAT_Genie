@@ -25,18 +25,27 @@ export class ScheduleGenerator {
     const allDates = DateUtils.generateDateRange(startDate, testDate);
     const studyDates = allDates.filter(date => DateUtils.isStudyDay(date, availability));
     
-    // Calculate phases
-    const phaseInfo = DateUtils.calculatePhaseInfo(studyDates.length);
-    
     // Get full length dates
     const flDates = DateUtils.distributeFullLengths(startDate, testDate, flWeekday, 6);
+    
+    // Calculate phases - exclude FL days from study day count
+    // FL days are scheduled separately and don't count toward phase distribution
+    const actualStudyDays = studyDates.length - flDates.filter(flDate => 
+      studyDates.some(studyDate => 
+        DateUtils.formatDate(flDate) === DateUtils.formatDate(studyDate)
+      )
+    ).length;
+    const phaseInfo = DateUtils.calculatePhaseInfo(actualStudyDays);
     
     // Get topics by priority
     const topics = await this.resourceManager.getTopicsByPriority(priorities);
     const highYieldTopics = topics.filter(t => t.high_yield);
     
-    // Initialize phase planner with topics
-    await this.phasePlanner.initialize(topics);
+    // Calculate dynamic time targets based on study duration
+    const timeTargets = DateUtils.calculateTimeTargets(phaseInfo.phase1 + phaseInfo.phase2 + phaseInfo.phase3);
+    
+    // Initialize phase planner with topics and time targets
+    await this.phasePlanner.initialize(topics, timeTargets);
     
     // Generate schedule
     const schedule: ScheduleDay[] = [];
@@ -44,50 +53,47 @@ export class ScheduleGenerator {
     let currentTopicIndex = 0;
 
     for (const date of allDates) {
-      if (DateUtils.isStudyDay(date, availability)) {
-        // Check if it's a full length day
-        const isFLDay = flDates.some(flDate => 
+      // Check if it's a full length day FIRST (before checking study day)
+      const isFLDay = flDates.some(flDate => 
+        flDate.getTime() === date.getTime()
+      );
+
+      if (isFLDay) {
+        const flIndex = flDates.findIndex(flDate => 
           flDate.getTime() === date.getTime()
         );
-
-        if (isFLDay) {
-          const flIndex = flDates.findIndex(flDate => 
-            flDate.getTime() === date.getTime()
-          );
-          schedule.push({
-            date: DateUtils.formatDate(date),
-            kind: 'full_length',
-            provider: 'AAMC',
-            name: `FL #${flIndex + 1}`
-          });
-        } else {
-          // Regular study day
-          // CRITICAL FIX: Refresh used resources from DB before each day
-          const usedResources = await this.resourceManager.getUsedResources();
-          
-          const phase = DateUtils.getPhaseForDay(studyDayIndex, phaseInfo);
-          const anchor = this.selectAnchor(topics, currentTopicIndex, phase, priorities);
-          
-          let studyDay: ScheduleDay;
-          switch (phase) {
-            case 1:
-              studyDay = await this.phasePlanner.planPhase1Day(date, anchor, usedResources);
-              break;
-            case 2:
-              studyDay = await this.phasePlanner.planPhase2Day(date, anchor, usedResources);
-              break;
-            case 3:
-              studyDay = await this.phasePlanner.planPhase3Day(date, anchor, usedResources);
-              break;
-            default:
-              throw new Error(`Invalid phase: ${phase}`);
-          }
-          
-          schedule.push(studyDay);
-          currentTopicIndex = (currentTopicIndex + 1) % topics.length;
+        schedule.push({
+          date: DateUtils.formatDate(date),
+          kind: 'full_length',
+          provider: 'AAMC',
+          name: `FL #${flIndex + 1}`
+        });
+      } else if (DateUtils.isStudyDay(date, availability)) {
+        // Regular study day
+        // CRITICAL FIX: Refresh used resources from DB before each day
+        const usedResources = await this.resourceManager.getUsedResources();
+        
+        const phase = DateUtils.getPhaseForDay(studyDayIndex, phaseInfo);
+        const anchor = this.selectAnchor(topics, currentTopicIndex, phase, priorities);
+        
+        let studyDay: ScheduleDay;
+        switch (phase) {
+          case 1:
+            studyDay = await this.phasePlanner.planPhase1Day(date, anchor, usedResources);
+            break;
+          case 2:
+            studyDay = await this.phasePlanner.planPhase2Day(date, anchor, usedResources);
+            break;
+          case 3:
+            studyDay = await this.phasePlanner.planPhase3Day(date, anchor, usedResources);
+            break;
+          default:
+            throw new Error(`Invalid phase: ${phase}`);
         }
         
+        schedule.push(studyDay);
         studyDayIndex++;
+        currentTopicIndex = (currentTopicIndex + 1) % topics.length;
       } else {
         // Break day
         schedule.push({

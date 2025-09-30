@@ -1,0 +1,2229 @@
+{
+  "metadata": {
+    "generatedAt": "2025-09-30T10:23:14.902Z",
+    "totalRuns": 11,
+    "latestRun": "test-results-2025-09-30T10-23-14-832Z.json",
+    "oldestRun": "test-results-2025-09-30T09-42-13-576Z.json"
+  },
+  "trendAnalysis": {
+    "overallScores": [
+      {
+        "timestamp": "2025-09-30T10:23:02.996Z",
+        "score": 98,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:58:36.306Z",
+        "score": 98,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:54:20.500Z",
+        "score": 86,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:53:36.933Z",
+        "score": 86,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:52:45.425Z",
+        "score": 68,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:52:05.481Z",
+        "score": 68,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:51:34.414Z",
+        "score": 68,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:51:25.692Z",
+        "score": 68,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:50:36.164Z",
+        "score": 50,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:49:34.632Z",
+        "score": 50,
+        "passedTests": 10,
+        "totalTests": 10
+      },
+      {
+        "timestamp": "2025-09-30T09:42:01.719Z",
+        "score": 44,
+        "passedTests": 10,
+        "totalTests": 10
+      }
+    ],
+    "validationTrends": {
+      "fullLengths": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "passed": 9,
+          "total": 10,
+          "percentage": 90
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "passed": 9,
+          "total": 10,
+          "percentage": 90
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "passed": 9,
+          "total": 10,
+          "percentage": 90
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "passed": 9,
+          "total": 10,
+          "percentage": 90
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        }
+      ],
+      "phaseDistribution": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 4,
+          "total": 10,
+          "percentage": 40
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 2,
+          "total": 10,
+          "percentage": 20
+        }
+      ],
+      "neverRepeat": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "passed": 1,
+          "total": 10,
+          "percentage": 10
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        }
+      ],
+      "timeBudget": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        }
+      ],
+      "phaseStructure": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "passed": 10,
+          "total": 10,
+          "percentage": 100
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "passed": 1,
+          "total": 10,
+          "percentage": 10
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "passed": 0,
+          "total": 10,
+          "percentage": 0
+        }
+      ]
+    },
+    "testSpecificTrends": {
+      "standard_10_weeks": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "intensive_8_weeks": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "part_time_16_weeks": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "minimal_priorities": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "extensive_priorities": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "60.0",
+          "grade": "F"
+        }
+      ],
+      "weekend_only": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "weekday_only": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "short_6_weeks": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ],
+      "long_20_weeks": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "60.0",
+          "grade": "F"
+        }
+      ],
+      "irregular_availability": [
+        {
+          "timestamp": "2025-09-30T10:23:02.996Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:58:36.306Z",
+          "score": "100.0",
+          "grade": "A"
+        },
+        {
+          "timestamp": "2025-09-30T09:54:20.500Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:53:36.933Z",
+          "score": "80.0",
+          "grade": "B"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:45.425Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:52:05.481Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:34.414Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:51:25.692Z",
+          "score": "60.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:50:36.164Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:49:34.632Z",
+          "score": "40.0",
+          "grade": "F"
+        },
+        {
+          "timestamp": "2025-09-30T09:42:01.719Z",
+          "score": "40.0",
+          "grade": "F"
+        }
+      ]
+    }
+  },
+  "configurationAnalysis": {
+    "byStudyDays": {
+      "2": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          40
+        ],
+        "average": 69.0909090909091,
+        "count": 11
+      },
+      "4": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          80,
+          100,
+          80,
+          80,
+          60,
+          80,
+          60,
+          80,
+          60,
+          80,
+          60,
+          60,
+          40,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 72.72727272727273,
+        "count": 22
+      },
+      "5": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40
+        ],
+        "average": 65.45454545454545,
+        "count": 33
+      },
+      "6": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          60
+        ],
+        "average": 81.81818181818181,
+        "count": 11
+      },
+      "7": {
+        "scores": [
+          100,
+          100,
+          80,
+          100,
+          100,
+          80,
+          100,
+          100,
+          60,
+          100,
+          100,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          60,
+          60,
+          40,
+          60,
+          60,
+          40,
+          40,
+          60,
+          40
+        ],
+        "average": 73.33333333333333,
+        "count": 33
+      }
+    },
+    "byPriorities": {
+      "4": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 65.45454545454545,
+        "count": 11
+      },
+      "7": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          40
+        ],
+        "average": 69.0909090909091,
+        "count": 11
+      },
+      "8": {
+        "scores": [
+          100,
+          80,
+          100,
+          80,
+          100,
+          60,
+          100,
+          60,
+          80,
+          60,
+          80,
+          60,
+          80,
+          60,
+          80,
+          60,
+          60,
+          40,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 69.0909090909091,
+        "count": 22
+      },
+      "9": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 65.45454545454545,
+        "count": 11
+      },
+      "10": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 65.45454545454545,
+        "count": 11
+      },
+      "13": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          80,
+          100,
+          100,
+          80,
+          100,
+          100,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          40,
+          60,
+          60,
+          40,
+          60,
+          60,
+          40,
+          40,
+          60
+        ],
+        "average": 75.75757575757575,
+        "count": 33
+      },
+      "25": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          60
+        ],
+        "average": 81.81818181818181,
+        "count": 11
+      }
+    },
+    "byAvailability": {
+      "Mon,Tue,Thu,Fri,Sat": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 65.45454545454545,
+        "count": 11
+      },
+      "Mon,Tue,Wed,Thu,Fri,Sat,Sun": {
+        "scores": [
+          100,
+          100,
+          80,
+          100,
+          100,
+          80,
+          100,
+          100,
+          60,
+          100,
+          100,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          80,
+          80,
+          60,
+          60,
+          60,
+          40,
+          60,
+          60,
+          40,
+          40,
+          60,
+          40
+        ],
+        "average": 73.33333333333333,
+        "count": 33
+      },
+      "Mon,Wed,Fri,Sat": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          40
+        ],
+        "average": 80,
+        "count": 11
+      },
+      "Mon,Tue,Wed,Thu,Fri": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40,
+          40,
+          40,
+          40
+        ],
+        "average": 65.45454545454545,
+        "count": 22
+      },
+      "Sat,Sun": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          40
+        ],
+        "average": 69.0909090909091,
+        "count": 11
+      },
+      "Mon,Tue,Wed,Thu,Fri,Sat": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          60
+        ],
+        "average": 81.81818181818181,
+        "count": 11
+      },
+      "Mon,Wed,Fri,Sun": {
+        "scores": [
+          100,
+          100,
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 65.45454545454545,
+        "count": 11
+      }
+    },
+    "byDuration": {
+      "9_12_weeks": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          100,
+          80,
+          80,
+          80,
+          80,
+          80,
+          100,
+          80,
+          80,
+          80,
+          60,
+          60,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          80,
+          60,
+          60,
+          60,
+          40,
+          40,
+          60,
+          60,
+          40,
+          40,
+          40,
+          40,
+          60,
+          60,
+          40,
+          40,
+          40,
+          40,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 68.78787878787878,
+        "count": 66
+      },
+      "7_8_weeks": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          40
+        ],
+        "average": 80,
+        "count": 11
+      },
+      "13_16_weeks": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          40
+        ],
+        "average": 80,
+        "count": 11
+      },
+      "6_weeks_or_less": {
+        "scores": [
+          80,
+          80,
+          60,
+          60,
+          60,
+          60,
+          60,
+          60,
+          40,
+          40,
+          40
+        ],
+        "average": 58.18181818181818,
+        "count": 11
+      },
+      "17_weeks_or_more": {
+        "scores": [
+          100,
+          100,
+          100,
+          100,
+          80,
+          80,
+          80,
+          80,
+          60,
+          60,
+          60
+        ],
+        "average": 81.81818181818181,
+        "count": 11
+      }
+    }
+  },
+  "pairwiseComparisons": [
+    {
+      "test1": "test-results-2025-09-30T09-58-48-442Z.json",
+      "test2": "test-results-2025-09-30T09-54-32-552Z.json",
+      "timestamp1": "2025-09-30T09:58:36.306Z",
+      "timestamp2": "2025-09-30T09:54:20.500Z",
+      "differences": [
+        {
+          "testName": "standard_10_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "minimal_priorities",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekend_only",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekday_only",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "short_6_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "irregular_availability",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "test1": "test-results-2025-09-30T09-53-48-682Z.json",
+      "test2": "test-results-2025-09-30T09-52-57-169Z.json",
+      "timestamp1": "2025-09-30T09:53:36.933Z",
+      "timestamp2": "2025-09-30T09:52:45.425Z",
+      "differences": [
+        {
+          "testName": "standard_10_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "intensive_8_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "part_time_16_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "minimal_priorities",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "extensive_priorities",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekend_only",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekday_only",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "long_20_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "100.0",
+              "test2": "80.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "irregular_availability",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_fullLengths",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "test1": "test-results-2025-09-30T09-51-37-364Z.json",
+      "test2": "test-results-2025-09-30T09-50-47-742Z.json",
+      "timestamp1": "2025-09-30T09:51:25.692Z",
+      "timestamp2": "2025-09-30T09:50:36.164Z",
+      "differences": [
+        {
+          "testName": "standard_10_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "intensive_8_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "part_time_16_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "minimal_priorities",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "extensive_priorities",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekday_only",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "short_6_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "long_20_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "80.0",
+              "test2": "60.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "irregular_availability",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "test1": "test-results-2025-09-30T09-50-47-742Z.json",
+      "test2": "test-results-2025-09-30T09-49-46-267Z.json",
+      "timestamp1": "2025-09-30T09:50:36.164Z",
+      "timestamp2": "2025-09-30T09:49:34.632Z",
+      "differences": [
+        {
+          "testName": "standard_10_weeks",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "intensive_8_weeks",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "part_time_16_weeks",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "minimal_priorities",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "extensive_priorities",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekday_only",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "short_6_weeks",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "long_20_weeks",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "irregular_availability",
+          "differences": [
+            {
+              "metric": "validation_neverRepeat",
+              "test1": "FAIL",
+              "test2": "PASS"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "test1": "test-results-2025-09-30T09-49-46-267Z.json",
+      "test2": "test-results-2025-09-30T09-42-13-576Z.json",
+      "timestamp1": "2025-09-30T09:49:34.632Z",
+      "timestamp2": "2025-09-30T09:42:01.719Z",
+      "differences": [
+        {
+          "testName": "intensive_8_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "part_time_16_weeks",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_phaseDistribution",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        },
+        {
+          "testName": "weekend_only",
+          "differences": [
+            {
+              "metric": "overall_score",
+              "test1": "60.0",
+              "test2": "40.0"
+            },
+            {
+              "metric": "validation_phaseStructure",
+              "test1": "PASS",
+              "test2": "FAIL"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "bestPerformingConfigurations": [],
+    "worstPerformingConfigurations": [
+      {
+        "type": "study_days_per_week",
+        "value": "2",
+        "averageScore": "69.1",
+        "testCount": 11
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "5",
+        "averageScore": "65.5",
+        "testCount": 33
+      }
+    ],
+    "mostStableConfigurations": [
+      {
+        "type": "study_days_per_week",
+        "value": "6",
+        "averageScore": "81.8",
+        "variance": "251.24",
+        "testCount": 11
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "2",
+        "averageScore": "69.1",
+        "variance": "317.36",
+        "testCount": 11
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "7",
+        "averageScore": "73.3",
+        "variance": "379.80",
+        "testCount": 33
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "5",
+        "averageScore": "65.5",
+        "variance": "442.98",
+        "testCount": 33
+      },
+      {
+        "type": "study_days_per_week",
+        "value": "4",
+        "averageScore": "72.7",
+        "variance": "456.20",
+        "testCount": 22
+      }
+    ],
+    "recommendations": [
+      {
+        "type": "positive_trend",
+        "message": "Performance has improved by 54.0% over time",
+        "priority": "info"
+      }
+    ]
+  }
+}

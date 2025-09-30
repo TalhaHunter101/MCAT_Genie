@@ -7,14 +7,33 @@ export class PhasePlanner {
   private resourceManager: ResourceManager;
   private usedResources: Set<string> = new Set();
   private topics: Topic[] = [];
+  private timeTargets: {
+    phase1Target: number;
+    phase2Target: number;
+    phase3Target: number;
+    strategy: string;
+  } = {
+    phase1Target: 200,
+    phase2Target: 220,
+    phase3Target: 225,
+    strategy: 'balanced'
+  };
 
   constructor(resourceManager: ResourceManager) {
     this.resourceManager = resourceManager;
   }
 
-  async initialize(topics: Topic[]): Promise<void> {
+  async initialize(topics: Topic[], timeTargets?: {
+    phase1Target: number;
+    phase2Target: number;
+    phase3Target: number;
+    strategy: string;
+  }): Promise<void> {
     this.topics = topics;
     this.usedResources = await this.resourceManager.getUsedResources();
+    if (timeTargets) {
+      this.timeTargets = timeTargets;
+    }
   }
 
   async planPhase1Day(
@@ -113,10 +132,9 @@ export class PhasePlanner {
       }
     }
 
-    // 4. FILL REMAINING TIME: Add more content to reach target (~200 min)
-    // Target 200 min in Phase 1 to preserve resources for Phase 2
-    // Priority: KA videos/articles first, then discretes (limit CARS to preserve for Phase 2)
-    const targetTime = 200; // Reserve some resources for Phase 2
+    // 4. FILL REMAINING TIME: Add more content to reach dynamic target
+    // Dynamic target based on study duration strategy
+    const targetTime = this.timeTargets.phase1Target;
     
     // Add more KA videos if time remains (limit to 2 more)
     let extraVideosAdded = 0;
@@ -203,8 +221,12 @@ export class PhasePlanner {
 
     // 1. Science passages: 2 third-party (same category/subtopic as anchor OK)
     const jwPassages = await this.resourceManager.getJackWestinResources(anchor.key);
+    // Filter out CARS passages for science passages
+    const scienceOnlyPassages = jwPassages.filter(resource => 
+      !resource.title.toLowerCase().includes('cars')
+    );
     const passageSelections = ResourceSelectionUtils.selectResourcesForSlot(
-      anchor, 'jw_passage', 2, jwPassages, usedResources, remainingTime, this.topics, sameDayUsed
+      anchor, 'jw_passage', 2, scienceOnlyPassages, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
     for (const selection of passageSelections.slice(0, 2)) {
@@ -255,8 +277,12 @@ export class PhasePlanner {
 
     // 4. CARS: 2 Jack Westin passages (Phase 2 uses Jack Westin only)
     const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key);
+    // Filter for CARS passages specifically by filtering by title containing "CARS"
+    const carsOnlyPassages = carsPassages.filter(resource => 
+      resource.title.toLowerCase().includes('cars')
+    );
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
-      anchor, 'jw_passage', 2, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
+      anchor, 'jw_passage', 2, carsOnlyPassages, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
     for (const selection of carsSelections.slice(0, 2)) {
@@ -268,8 +294,8 @@ export class PhasePlanner {
       }
     }
 
-    // 5. FILL REMAINING TIME: Add more content to reach target (~220 min)
-    const targetTime = 220;
+    // 5. FILL REMAINING TIME: Add more content to reach dynamic target
+    const targetTime = this.timeTargets.phase2Target;
     
     // Add 1 more passage if time remains
     if (remainingTime >= 20 && (240 - remainingTime) < targetTime) {
@@ -381,8 +407,8 @@ export class PhasePlanner {
       }
     }
 
-    // 3. FILL REMAINING TIME: Add more AAMC materials to reach target (~220 min)
-    const targetTime = 220;
+    // 3. FILL REMAINING TIME: Add more AAMC materials to reach dynamic target
+    const targetTime = this.timeTargets.phase3Target;
     
     // Add more AAMC sets (limit to 3 more to ensure variety across days)
     let extraSetsAdded = 0;
