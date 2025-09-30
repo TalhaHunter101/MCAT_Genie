@@ -68,11 +68,11 @@ async function startServer() {
 
     // Start server
     app.listen(PORT, () => {
+      console.log('');
       console.log(`✅ Server running on port ${PORT}`);
       console.log(`📊 Health check: http://localhost:${PORT}/health`);
       console.log(`📅 Full plan endpoint: http://localhost:${PORT}/full-plan`);
-      console.log('\n📖 Sample API calls:');
-      console.log(`GET http://localhost:${PORT}/full-plan?start_date=2025-10-06&test_date=2025-12-15&priorities=1A,1B,1D,3A,3B,4A,4B,5A,5D,5E,6B,7A,9B&availability=Mon,Tue,Thu,Fri,Sat&fl_weekday=Sat`);
+      console.log(`📚 API documentation: http://localhost:${PORT}/api-docs`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);

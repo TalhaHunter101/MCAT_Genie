@@ -58,20 +58,23 @@ export class ResourceSelectionUtils {
    * Concept -> Subtopic -> Category
    */
   static getMatchingKeys(anchorKey: string): string[] {
-    const parts = this.parseKey(anchorKey);
+    const parts = anchorKey.split('.');
+    const category = parts[0];
+    const subtopic = parts[1];
+    const concept = parts[2];
     const keys: string[] = [];
 
-    // Add exact match
+    // Add exact match (concept level)
     keys.push(anchorKey);
 
-    // Add subtopic level if not already at concept level
-    if (parts.specificity === 0) {
-      keys.push(`${parts.category}.${parts.subtopic}.x`);
+    // Add subtopic level with .x notation if not already at subtopic level
+    if (concept && concept !== 'x') {
+      keys.push(`${category}.${subtopic}.x`);
     }
 
-    // Add category level if not already at category level
-    if (parts.specificity < 2) {
-      keys.push(`${parts.category}.x.x`);
+    // Add category level with .x.x notation if not already at category level
+    if (subtopic && subtopic !== 'x') {
+      keys.push(`${category}.x.x`);
     }
 
     return keys;
@@ -152,16 +155,19 @@ export class ResourceSelectionUtils {
    */
   static getResourceType(resource: Resource): string {
     if ('resource_type' in resource) {
-      switch (resource.resource_type) {
-        case 'Video': return 'KA video';
-        case 'Article': return 'KA article';
-        case 'Practice Passage': return 'Passage';
-        case 'Discrete Practice Question': return 'Discrete';
-        case 'CARS Passage': return 'Passage';
-        case 'Question Pack': return 'AAMC';
-        case 'Full Length': return 'AAMC';
-        default: return 'AAMC';
-      }
+      const resType = (resource as any).resource_type as string;
+      if (resType === 'Videos') return 'KA video';
+      if (resType === 'Articles') return 'KA article';
+      if (resType === 'Practice Passages') return 'Passage';
+      if (resType === 'Discrete Practice Questions') return 'Discrete';
+      if (resType === 'aamc_style_discrete') return 'Discrete';
+      if (resType === 'fundamental_discrete') return 'Discrete';
+      if (resType === 'aamc_style_passage') return 'Passage';
+      if (resType === 'fundamental_passage') return 'Passage';
+      if (resType === 'CARS Passage') return 'Passage';
+      if (resType === 'Question Pack') return 'AAMC';
+      if (resType === 'Full Length') return 'AAMC';
+      return 'AAMC';
     }
     if ('high_yield' in resource) return 'Kaplan';
     if ('question_count' in resource) return 'UWorld 10Q';
@@ -274,17 +280,13 @@ export class ResourceSelectionUtils {
     topics: Topic[],
     sameDayUsed: Set<string> = new Set()
   ): ResourceSelection[] {
-    // 1. Get matching keys with fallback
-    const matchingKeys = this.getMatchingKeys(anchor.key);
-    
-    // 2. Filter by slot type and matching keys
+    // 1. Filter by slot type only (key filtering already done by ResourceManager)
     let candidates = availableResources.filter(resource => {
-      const resourceKeys = this.getMatchingKeys(resource.key);
-      return matchingKeys.some(key => resourceKeys.includes(key)) &&
-             this.matchesSlotType(resource, slotType);
+      const slotMatch = this.matchesSlotType(resource, slotType);
+      return slotMatch;
     });
 
-    // 3. Filter by high-yield for Phases 1-2
+    // 2. Filter by high-yield for Phases 1-2
     if (phase <= 2) {
       const highYieldCandidates = this.filterHighYield(candidates, topics);
       if (highYieldCandidates.length > 0) {
@@ -292,17 +294,17 @@ export class ResourceSelectionUtils {
       }
     }
 
-    // 4. Filter by never-repeat constraint
+    // 3. Filter by never-repeat constraint
     candidates = candidates.filter(resource => 
       !usedResources.has(this.getResourceUid(resource))
     );
 
-    // 5. Filter by same-day deduplication
+    // 4. Filter by same-day deduplication
     candidates = candidates.filter(resource => 
       !sameDayUsed.has(this.getResourceUid(resource))
     );
 
-    // 6. Phase-specific filtering
+    // 5. Phase-specific filtering
     if (phase === 2) {
       // Phase 2 discretes must not be used in Phase 1
       candidates = candidates.filter(resource => 
@@ -310,7 +312,7 @@ export class ResourceSelectionUtils {
       );
     }
 
-    // 7. Convert to ResourceSelection objects
+    // 6. Convert to ResourceSelection objects
     const selections: ResourceSelection[] = candidates.map(resource => ({
       resource,
       provider: this.getProvider(resource),
@@ -318,8 +320,9 @@ export class ResourceSelectionUtils {
       specificity: this.calculateSpecificity(anchor.key, resource.key)
     }));
 
-    // 8. Sort by all criteria
-    return this.sortResources(selections, anchor.key, timeBudget);
+    // 7. Sort by all criteria
+    const sortedSelections = this.sortResources(selections, anchor.key, timeBudget);
+    return sortedSelections;
   }
 
   /**
@@ -327,16 +330,25 @@ export class ResourceSelectionUtils {
    */
   private static matchesSlotType(resource: Resource, slotType: string): boolean {
     if ('resource_type' in resource) {
-      switch (slotType) {
-        case 'ka_video': return resource.resource_type === 'Video';
-        case 'ka_article': return resource.resource_type === 'Article';
-        case 'ka_discrete': return resource.resource_type === 'Discrete Practice Question';
-        case 'jw_discrete': return resource.resource_type === 'Discrete Practice Question';
-        case 'jw_passage': return resource.resource_type === 'CARS Passage';
-        case 'aamc_cars': return resource.resource_type === 'CARS Passage';
-        case 'aamc_set': return resource.resource_type === 'Question Pack';
-        default: return false;
+      const resType = (resource as any).resource_type as string;
+      if (slotType === 'ka_video') return resType === 'Videos';
+      if (slotType === 'ka_article') return resType === 'Articles';
+      if (slotType === 'ka_discrete') {
+        return resType === 'Discrete Practice Questions' || 
+               resType === 'aamc_style_discrete' || 
+               resType === 'fundamental_discrete';
       }
+      if (slotType === 'jw_discrete') {
+        return resType === 'aamc_style_discrete' || 
+               resType === 'fundamental_discrete';
+      }
+      if (slotType === 'jw_passage') {
+        return resType === 'aamc_style_passage' || 
+               resType === 'fundamental_passage';
+      }
+      if (slotType === 'aamc_cars') return resType === 'CARS Passage';
+      if (slotType === 'aamc_set') return resType === 'Question Pack';
+      return false;
     }
     if ('high_yield' in resource) return slotType === 'kaplan';
     if ('question_count' in resource) return slotType === 'uworld';
@@ -348,13 +360,17 @@ export class ResourceSelectionUtils {
    */
   private static getProvider(resource: Resource): string {
     if ('resource_type' in resource) {
-      if (['Video', 'Article', 'Practice Passage', 'Discrete Practice Question'].includes(resource.resource_type)) {
+      const resType = (resource as any).resource_type as string;
+      if (['Videos', 'Articles', 'Practice Passages', 'Discrete Practice Questions'].includes(resType)) {
         return 'Khan Academy';
       }
-      if (resource.resource_type === 'CARS Passage') {
+      if (['aamc_style_discrete', 'aamc_style_passage', 'fundamental_discrete', 'fundamental_passage'].includes(resType)) {
         return 'Jack Westin';
       }
-      if (['Question Pack', 'Full Length'].includes(resource.resource_type)) {
+      if (resType === 'CARS Passage') {
+        return 'AAMC';
+      }
+      if (['Question Pack', 'Full Length'].includes(resType)) {
         return 'AAMC';
       }
     }

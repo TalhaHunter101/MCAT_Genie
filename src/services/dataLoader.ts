@@ -61,7 +61,7 @@ export class DataLoader {
           row['subtopic_title'],
           row['concept_number'],
           row['concept_title'],
-          row['high_yield'] === 'Yes',
+          row['high_yield'] === true || row['high_yield'] === 'Yes',
           key
         ]);
       }
@@ -155,7 +155,7 @@ export class DataLoader {
           title,
           truncatedKey,
           row['time'] || 30, // Use Excel time or default
-          row['high_yield'] === 'Yes'
+          row['high_yield'] === true || row['high_yield'] === 'Yes'
         ]);
       }
       
@@ -271,20 +271,6 @@ export class DataLoader {
       await client.query('DELETE FROM aamc_resources');
       
       for (const row of data as any[]) {
-        // Handle Excel formula objects for key field
-        const keyValue = row['key'];
-        const key = typeof keyValue === 'object' && keyValue && keyValue.result 
-          ? keyValue.result 
-          : keyValue;
-
-        // Skip rows with null or empty keys
-        if (!key || key === '') {
-          continue;
-        }
-
-        // Truncate key if it's too long for the database constraint
-        const truncatedKey = key.toString().substring(0, 20);
-
         // Handle AAMC materials - determine resource type and construct data
         const aamcQ = row['AAMC Q\'s'];
         const aamcFL = row['AAMC FL\'s'];
@@ -306,6 +292,10 @@ export class DataLoader {
           continue;
         }
 
+        // AAMC resources don't have specific topic keys - they're general practice
+        // Use a generic key 'AAMC.x.x' for all AAMC resources
+        const key = 'AAMC.x.x';
+
         await client.query(`
           INSERT INTO aamc_resources (stable_id, title, resource_type, key, time_minutes, pack_name)
           VALUES ($1, $2, $3, $4, $5, $6)
@@ -313,7 +303,7 @@ export class DataLoader {
           row['stable_id'] || null,
           title,
           resourceType,
-          truncatedKey,
+          key,
           row['time (for 20-35 question set or 2 passages if CARS)'] || this.getDefaultTime('AAMC', resourceType),
           packName
         ]);

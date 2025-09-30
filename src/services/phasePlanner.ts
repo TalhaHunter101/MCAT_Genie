@@ -38,8 +38,8 @@ export class PhasePlanner {
 
     // 1. Science content: 1 Kaplan section + matching KA content (videos + articles)
     const kaplanResources = await this.resourceManager.getKaplanResources(anchor.key, true);
-    const kaVideos = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Video');
-    const kaArticles = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Article');
+    const kaVideos = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Videos');
+    const kaArticles = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Articles');
 
     // Select Kaplan section with high-yield priority
     const kaplanSelections = ResourceSelectionUtils.selectResourcesForSlot(
@@ -82,8 +82,8 @@ export class PhasePlanner {
     }
 
     // 2. Science discretes: 1 KA or Jack Westin discrete set
-    const kaDiscretes = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Discrete Practice Question');
-    const jwDiscretes = await this.resourceManager.getJackWestinResources(anchor.key, 'Discrete Practice Question');
+    const kaDiscretes = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Discrete Practice Questions');
+    const jwDiscretes = await this.resourceManager.getJackWestinResources(anchor.key);
     const allDiscretes = [...kaDiscretes, ...jwDiscretes];
 
     const discreteSelections = ResourceSelectionUtils.selectResourcesForSlot(
@@ -99,7 +99,7 @@ export class PhasePlanner {
     }
 
     // 3. CARS: 2 Jack Westin passages (Phase 1 uses Jack Westin only)
-    const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key, 'CARS Passage');
+    const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key);
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
       anchor, 'jw_passage', 1, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
     );
@@ -143,7 +143,7 @@ export class PhasePlanner {
     // Phase 2 Order: Science passages → UWorld → Extra discretes → CARS → Review
 
     // 1. Science passages: 2 third-party (same category/subtopic as anchor OK)
-    const jwPassages = await this.resourceManager.getJackWestinResources(anchor.key, 'CARS Passage');
+    const jwPassages = await this.resourceManager.getJackWestinResources(anchor.key);
     const passageSelections = ResourceSelectionUtils.selectResourcesForSlot(
       anchor, 'jw_passage', 2, jwPassages, usedResources, remainingTime, this.topics, sameDayUsed
     );
@@ -172,8 +172,8 @@ export class PhasePlanner {
     }
 
     // 3. Extra discretes: 1-2 discrete sets (NOT used in Phase 1)
-    const kaDiscretes = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Discrete Practice Question');
-    const jwDiscretes = await this.resourceManager.getJackWestinResources(anchor.key, 'Discrete Practice Question');
+    const kaDiscretes = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Discrete Practice Questions');
+    const jwDiscretes = await this.resourceManager.getJackWestinResources(anchor.key);
     const allDiscretes = [...kaDiscretes, ...jwDiscretes];
 
     // Filter out resources used in Phase 1
@@ -195,7 +195,7 @@ export class PhasePlanner {
     }
 
     // 4. CARS: 2 Jack Westin passages (Phase 2 uses Jack Westin only)
-    const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key, 'CARS Passage');
+    const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key);
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
       anchor, 'jw_passage', 2, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
     );
@@ -261,9 +261,11 @@ export class PhasePlanner {
     }
 
     // 2. AAMC CARS passages: 2 (Phase 3 uses AAMC only)
-    const aamcCars = await this.resourceManager.getAAMCResources(anchor.key, 'CARS Passage');
+    // AAMC CARS resources are Question Packs with "CARS" in the title
+    const allAamcResources = await this.resourceManager.getAAMCResources(anchor.key, 'Question Pack');
+    const aamcCars = allAamcResources.filter(r => r.title.includes('CARS'));
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
-      anchor, 'aamc_cars', 3, aamcCars, usedResources, remainingTime, this.topics, sameDayUsed
+      anchor, 'aamc_set', 3, aamcCars, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
     for (const selection of carsSelections.slice(0, 2)) {

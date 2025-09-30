@@ -21,7 +21,7 @@ export interface BaseResource {
 }
 
 export interface KhanAcademyResource extends BaseResource {
-  resource_type: 'Video' | 'Article' | 'Practice Passage' | 'Discrete Practice Question';
+  resource_type: 'Videos' | 'Articles' | 'Practice Passages' | 'Discrete Practice Questions';
 }
 
 export interface KaplanResource extends BaseResource {
@@ -29,7 +29,7 @@ export interface KaplanResource extends BaseResource {
 }
 
 export interface JackWestinResource extends BaseResource {
-  resource_type: 'CARS Passage' | 'Discrete Practice Question';
+  resource_type: 'aamc_style_passage' | 'fundamental_passage' | 'aamc_style_discrete' | 'fundamental_discrete';
 }
 
 export interface UWorldResource extends BaseResource {

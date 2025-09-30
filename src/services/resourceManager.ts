@@ -38,7 +38,7 @@ export class ResourceManager {
   async getTopicsByPriority(priorities: string[]): Promise<Topic[]> {
     const client = await pool.connect();
     try {
-      const priorityKeys = priorities.map(p => p + '.%');
+      const priorityKeys = priorities.map(p => p + '%');
       const placeholders = priorityKeys.map((_, i) => `$${i + 1}`).join(',');
       
       const result = await client.query(`
@@ -65,14 +65,19 @@ export class ResourceManager {
   async getKhanAcademyResources(key: string, resourceType?: string): Promise<Resource[]> {
     const client = await pool.connect();
     try {
+      // Use fallback hierarchy: exact match -> subtopic -> category
+      // We need to match resources that have the EXACT key in our matching keys list
+      const matchingKeys = this.getMatchingKeys(key);
+      const keyConditions = matchingKeys.map((_, i) => `key = $${i + 1}`).join(' OR ');
+      
       let query = `
         SELECT * FROM khan_academy_resources 
-        WHERE key = $1
+        WHERE (${keyConditions})
       `;
-      const params: any[] = [key];
+      const params: any[] = matchingKeys;
       
       if (resourceType) {
-        query += ' AND resource_type = $2';
+        query += ' AND resource_type = $' + (matchingKeys.length + 1);
         params.push(resourceType);
       }
       
@@ -85,14 +90,41 @@ export class ResourceManager {
     }
   }
 
+  private getMatchingKeys(anchorKey: string): string[] {
+    const parts = anchorKey.split('.');
+    const category = parts[0];
+    const subtopic = parts[1];
+    const concept = parts[2];
+    const keys: string[] = [];
+
+    // Add exact match (concept level)
+    keys.push(anchorKey);
+
+    // Add subtopic level with .x notation if not already at subtopic level
+    if (concept && concept !== 'x') {
+      keys.push(`${category}.${subtopic}.x`);
+    }
+
+    // Add category level with .x.x notation if not already at category level
+    if (subtopic && subtopic !== 'x') {
+      keys.push(`${category}.x.x`);
+    }
+
+    return keys;
+  }
+
   async getKaplanResources(key: string, highYieldOnly: boolean = false): Promise<Resource[]> {
     const client = await pool.connect();
     try {
+      // Use fallback hierarchy: exact match -> subtopic -> category
+      const matchingKeys = this.getMatchingKeys(key);
+      const keyConditions = matchingKeys.map((_, i) => `key = $${i + 1}`).join(' OR ');
+      
       let query = `
         SELECT * FROM kaplan_resources 
-        WHERE key = $1
+        WHERE (${keyConditions})
       `;
-      const params: any[] = [key];
+      const params: any[] = matchingKeys;
       
       if (highYieldOnly) {
         query += ' AND high_yield = true';
@@ -110,14 +142,18 @@ export class ResourceManager {
   async getJackWestinResources(key: string, resourceType?: string): Promise<Resource[]> {
     const client = await pool.connect();
     try {
+      // Use fallback hierarchy: exact match -> subtopic -> category
+      const matchingKeys = this.getMatchingKeys(key);
+      const keyConditions = matchingKeys.map((_, i) => `key = $${i + 1}`).join(' OR ');
+      
       let query = `
         SELECT * FROM jack_westin_resources 
-        WHERE key = $1
+        WHERE (${keyConditions})
       `;
-      const params: any[] = [key];
+      const params: any[] = matchingKeys;
       
       if (resourceType) {
-        query += ' AND resource_type = $2';
+        query += ' AND resource_type = $' + (matchingKeys.length + 1);
         params.push(resourceType);
       }
       
@@ -133,11 +169,15 @@ export class ResourceManager {
   async getUWorldResources(key: string): Promise<Resource[]> {
     const client = await pool.connect();
     try {
+      // Use fallback hierarchy: exact match -> subtopic -> category
+      const matchingKeys = this.getMatchingKeys(key);
+      const keyConditions = matchingKeys.map((_, i) => `key = $${i + 1}`).join(' OR ');
+      
       const result = await client.query(`
         SELECT * FROM uworld_resources 
-        WHERE key = $1
+        WHERE (${keyConditions})
         ORDER BY title
-      `, [key]);
+      `, matchingKeys);
       return result.rows;
     } finally {
       client.release();
@@ -147,14 +187,13 @@ export class ResourceManager {
   async getAAMCResources(key: string, resourceType?: string): Promise<Resource[]> {
     const client = await pool.connect();
     try {
-      let query = `
-        SELECT * FROM aamc_resources 
-        WHERE key = $1
-      `;
-      const params: any[] = [key];
+      // AAMC resources are general practice materials, not topic-specific
+      // So we return all AAMC resources regardless of the key
+      let query = `SELECT * FROM aamc_resources WHERE 1=1`;
+      const params: any[] = [];
       
       if (resourceType) {
-        query += ' AND resource_type = $2';
+        query += ' AND resource_type = $1';
         params.push(resourceType);
       }
       
