@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { testConnection, initializeDatabase } from './database/connection';
 import { DataLoader } from './services/dataLoader';
 import { ScheduleController } from './controllers/scheduleController';
+import { setupSwagger } from './config/swagger';
 import path from 'path';
 
 dotenv.config();
@@ -20,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Initialize controller
 const scheduleController = new ScheduleController();
+
+// Setup Swagger documentation
+setupSwagger(app);
 
 // Routes
 app.get('/health', (req, res) => scheduleController.getHealth(req, res));

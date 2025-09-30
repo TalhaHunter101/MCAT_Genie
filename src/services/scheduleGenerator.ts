@@ -35,6 +35,9 @@ export class ScheduleGenerator {
     const topics = await this.resourceManager.getTopicsByPriority(priorities);
     const highYieldTopics = topics.filter(t => t.high_yield);
     
+    // Initialize phase planner with topics
+    await this.phasePlanner.initialize(topics);
+    
     // Generate schedule
     const schedule: ScheduleDay[] = [];
     let studyDayIndex = 0;
@@ -61,7 +64,7 @@ export class ScheduleGenerator {
         } else {
           // Regular study day
           const phase = DateUtils.getPhaseForDay(studyDayIndex, phaseInfo);
-          const anchor = this.selectAnchor(highYieldTopics, currentTopicIndex, phase);
+          const anchor = this.selectAnchor(topics, currentTopicIndex, phase, priorities);
           
           let studyDay: ScheduleDay;
           switch (phase) {
@@ -79,7 +82,7 @@ export class ScheduleGenerator {
           }
           
           schedule.push(studyDay);
-          currentTopicIndex = (currentTopicIndex + 1) % highYieldTopics.length;
+          currentTopicIndex = (currentTopicIndex + 1) % topics.length;
         }
         
         studyDayIndex++;
@@ -109,12 +112,20 @@ export class ScheduleGenerator {
     };
   }
 
-  private selectAnchor(topics: Topic[], currentIndex: number, phase: number): Topic {
-    // For Phase 1 & 2, prefer high-yield topics
+  private selectAnchor(topics: Topic[], currentIndex: number, phase: number, priorities: string[]): Topic {
+    // For Phase 1 & 2, use high-yield topics only under priorities
     // For Phase 3, can use any topic
     if (phase <= 2) {
       const hyTopics = topics.filter(t => t.high_yield);
       if (hyTopics.length > 0) {
+        // Select from highest priority category with high-yield remaining
+        for (const priority of priorities) {
+          const priorityHyTopics = hyTopics.filter(t => t.key.startsWith(priority));
+          if (priorityHyTopics.length > 0) {
+            return priorityHyTopics[currentIndex % priorityHyTopics.length];
+          }
+        }
+        // Fallback to any high-yield topic
         return hyTopics[currentIndex % hyTopics.length];
       }
     }

@@ -45,6 +45,12 @@ export class DataLoader {
       await client.query('DELETE FROM topics');
       
       for (const row of data as any[]) {
+        // Handle Excel formula objects for key field
+        const keyValue = row['key'];
+        const key = typeof keyValue === 'object' && keyValue && keyValue.result 
+          ? keyValue.result 
+          : keyValue;
+
         await client.query(`
           INSERT INTO topics (content_category_number, content_category_title, subtopic_number, subtopic_title, concept_number, concept_title, high_yield, key)
           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
@@ -56,7 +62,7 @@ export class DataLoader {
           row['concept_number'],
           row['concept_title'],
           row['high_yield'] === 'Yes',
-          row['key']
+          key
         ]);
       }
       
@@ -79,16 +85,29 @@ export class DataLoader {
       await client.query('DELETE FROM khan_academy_resources');
       
       for (const row of data as any[]) {
+        // Handle Excel formula objects for key field
+        const keyValue = row['key'];
+        const key = typeof keyValue === 'object' && keyValue && keyValue.result 
+          ? keyValue.result 
+          : keyValue;
+
+        // Skip rows with null or empty keys
+        if (!key || key === '') {
+          continue;
+        }
+
+        // Truncate key if it's too long for the database constraint
+        const truncatedKey = key.toString().substring(0, 20);
+
         await client.query(`
-          INSERT INTO khan_academy_resources (stable_id, title, url, resource_type, key, time_minutes)
-          VALUES ($1, $2, $3, $4, $5, $6)
+          INSERT INTO khan_academy_resources (stable_id, title, resource_type, key, time_minutes)
+          VALUES ($1, $2, $3, $4, $5)
         `, [
           row['stable_id'] || null,
           row['title'],
-          row['url'],
           row['resource_type'],
-          row['key'],
-          row['time_minutes'] || this.getDefaultTime('KA', row['resource_type'])
+          truncatedKey,
+          row['time'] || this.getDefaultTime('KA', row['resource_type'])
         ]);
       }
       
@@ -111,15 +130,31 @@ export class DataLoader {
       await client.query('DELETE FROM kaplan_resources');
       
       for (const row of data as any[]) {
+        // Handle Excel formula objects for key field
+        const keyValue = row['key'];
+        const key = typeof keyValue === 'object' && keyValue && keyValue.result 
+          ? keyValue.result 
+          : keyValue;
+
+        // Skip rows with null or empty keys
+        if (!key || key === '') {
+          continue;
+        }
+
+        // Truncate key if it's too long for the database constraint
+        const truncatedKey = key.toString().substring(0, 20);
+
+        // Construct title from multiple fields
+        const title = `${row['section_title']} - ${row['chapter_title']}`;
+
         await client.query(`
-          INSERT INTO kaplan_resources (stable_id, title, url, key, time_minutes, high_yield)
-          VALUES ($1, $2, $3, $4, $5, $6)
+          INSERT INTO kaplan_resources (stable_id, title, key, time_minutes, high_yield)
+          VALUES ($1, $2, $3, $4, $5)
         `, [
           row['stable_id'] || null,
-          row['title'],
-          row['url'],
-          row['key'],
-          30, // Default Kaplan timing
+          title,
+          truncatedKey,
+          row['time'] || 30, // Use Excel time or default
           row['high_yield'] === 'Yes'
         ]);
       }
@@ -143,16 +178,29 @@ export class DataLoader {
       await client.query('DELETE FROM jack_westin_resources');
       
       for (const row of data as any[]) {
+        // Handle Excel formula objects for key field
+        const keyValue = row['key'];
+        const key = typeof keyValue === 'object' && keyValue && keyValue.result 
+          ? keyValue.result 
+          : keyValue;
+
+        // Skip rows with null or empty keys
+        if (!key || key === '') {
+          continue;
+        }
+
+        // Truncate key if it's too long for the database constraint
+        const truncatedKey = key.toString().substring(0, 20);
+
         await client.query(`
-          INSERT INTO jack_westin_resources (stable_id, title, url, resource_type, key, time_minutes)
-          VALUES ($1, $2, $3, $4, $5, $6)
+          INSERT INTO jack_westin_resources (stable_id, title, resource_type, key, time_minutes)
+          VALUES ($1, $2, $3, $4, $5)
         `, [
           row['stable_id'] || null,
           row['title'],
-          row['url'],
           row['resource_type'],
-          row['key'],
-          row['time_minutes'] || this.getDefaultTime('JW', row['resource_type'])
+          truncatedKey,
+          row['time'] || this.getDefaultTime('JW', row['resource_type'])
         ]);
       }
       
@@ -175,15 +223,31 @@ export class DataLoader {
       await client.query('DELETE FROM uworld_resources');
       
       for (const row of data as any[]) {
+        // Handle Excel formula objects for key field
+        const keyValue = row['key'];
+        const key = typeof keyValue === 'object' && keyValue && keyValue.result 
+          ? keyValue.result 
+          : keyValue;
+
+        // Skip rows with null or empty keys
+        if (!key || key === '') {
+          continue;
+        }
+
+        // Truncate key if it's too long for the database constraint
+        const truncatedKey = key.toString().substring(0, 20);
+
+        // Construct title from available fields
+        const title = `${row['topic']} - ${row['subtopic']}`;
+
         await client.query(`
-          INSERT INTO uworld_resources (stable_id, title, url, key, time_minutes, question_count)
-          VALUES ($1, $2, $3, $4, $5, $6)
+          INSERT INTO uworld_resources (stable_id, title, key, time_minutes, question_count)
+          VALUES ($1, $2, $3, $4, $5)
         `, [
           row['stable_id'] || null,
-          row['title'],
-          row['url'],
-          row['key'],
-          30, // Default UWorld timing
+          title,
+          truncatedKey,
+          row['time'] || 30, // Use Excel time or default
           10  // Default question count
         ]);
       }
@@ -207,17 +271,51 @@ export class DataLoader {
       await client.query('DELETE FROM aamc_resources');
       
       for (const row of data as any[]) {
+        // Handle Excel formula objects for key field
+        const keyValue = row['key'];
+        const key = typeof keyValue === 'object' && keyValue && keyValue.result 
+          ? keyValue.result 
+          : keyValue;
+
+        // Skip rows with null or empty keys
+        if (!key || key === '') {
+          continue;
+        }
+
+        // Truncate key if it's too long for the database constraint
+        const truncatedKey = key.toString().substring(0, 20);
+
+        // Handle AAMC materials - determine resource type and construct data
+        const aamcQ = row['AAMC Q\'s'];
+        const aamcFL = row['AAMC FL\'s'];
+        
+        let title, resourceType, packName;
+        
+        if (aamcQ) {
+          // Question Pack
+          title = aamcQ;
+          resourceType = 'Question Pack';
+          packName = aamcQ;
+        } else if (aamcFL) {
+          // Full Length
+          title = aamcFL;
+          resourceType = 'Full Length';
+          packName = null;
+        } else {
+          // Skip if neither Q pack nor FL
+          continue;
+        }
+
         await client.query(`
-          INSERT INTO aamc_resources (stable_id, title, url, resource_type, key, time_minutes, pack_name)
-          VALUES ($1, $2, $3, $4, $5, $6, $7)
+          INSERT INTO aamc_resources (stable_id, title, resource_type, key, time_minutes, pack_name)
+          VALUES ($1, $2, $3, $4, $5, $6)
         `, [
           row['stable_id'] || null,
-          row['title'],
-          row['url'],
-          row['resource_type'],
-          row['key'],
-          row['time_minutes'] || this.getDefaultTime('AAMC', row['resource_type']),
-          row['pack_name'] || null
+          title,
+          resourceType,
+          truncatedKey,
+          row['time (for 20-35 question set or 2 passages if CARS)'] || this.getDefaultTime('AAMC', resourceType),
+          packName
         ]);
       }
       

@@ -16,7 +16,6 @@ export interface BaseResource {
   id: number;
   stable_id?: string;
   title: string;
-  url: string;
   key: string;
   time_minutes: number;
 }

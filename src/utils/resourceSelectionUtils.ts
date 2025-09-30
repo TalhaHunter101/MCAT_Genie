@@ -1,0 +1,365 @@
+import { Resource, Topic, ResourceSelection } from '../models/types';
+
+export interface KeyParts {
+  category: string;
+  subtopic: number;
+  concept: number;
+  specificity: number; // 0=concept, 1=subtopic, 2=category
+}
+
+export interface TimeFitConfig {
+  target: number;
+  bandMin: number;
+  bandMax: number;
+}
+
+export class ResourceSelectionUtils {
+  private static readonly TIME_FIT_CONFIGS: Record<string, TimeFitConfig> = {
+    'KA video': { target: 15, bandMin: 10, bandMax: 15 },
+    'KA article': { target: 10, bandMin: 8, bandMax: 12 },
+    'Kaplan': { target: 30, bandMin: 20, bandMax: 30 },
+    'Discrete': { target: 30, bandMin: 25, bandMax: 35 },
+    'Passage': { target: 25, bandMin: 20, bandMax: 25 },
+    'UWorld 10Q': { target: 30, bandMin: 25, bandMax: 35 },
+    'AAMC': { target: 30, bandMin: 25, bandMax: 35 }
+  };
+
+  /**
+   * Parse a key string into its components
+   * Examples: "1A.1.1" -> {category: "1A", subtopic: 1, concept: 1, specificity: 0}
+   *           "1A.1.x" -> {category: "1A", subtopic: 1, concept: 0, specificity: 1}
+   *           "1A.x.x" -> {category: "1A", subtopic: 0, concept: 0, specificity: 2}
+   */
+  static parseKey(key: string): KeyParts {
+    const parts = key.split('.');
+    const category = parts[0];
+    
+    if (parts.length !== 3) {
+      throw new Error(`Invalid key format: ${key}`);
+    }
+
+    const subtopic = parts[1] === 'x' ? 0 : parseInt(parts[1], 10);
+    const concept = parts[2] === 'x' ? 0 : parseInt(parts[2], 10);
+
+    let specificity: number;
+    if (concept > 0) {
+      specificity = 0; // Concept level
+    } else if (subtopic > 0) {
+      specificity = 1; // Subtopic level
+    } else {
+      specificity = 2; // Category level
+    }
+
+    return { category, subtopic, concept, specificity };
+  }
+
+  /**
+   * Generate matching keys with fallback hierarchy
+   * Concept -> Subtopic -> Category
+   */
+  static getMatchingKeys(anchorKey: string): string[] {
+    const parts = this.parseKey(anchorKey);
+    const keys: string[] = [];
+
+    // Add exact match
+    keys.push(anchorKey);
+
+    // Add subtopic level if not already at concept level
+    if (parts.specificity === 0) {
+      keys.push(`${parts.category}.${parts.subtopic}.x`);
+    }
+
+    // Add category level if not already at category level
+    if (parts.specificity < 2) {
+      keys.push(`${parts.category}.x.x`);
+    }
+
+    return keys;
+  }
+
+  /**
+   * Calculate time-fit score for a resource
+   * Lower score is better (0 = perfect fit within band)
+   */
+  static calculateTimeFit(timeMinutes: number, resourceType: string): number {
+    const config = this.TIME_FIT_CONFIGS[resourceType] || this.TIME_FIT_CONFIGS['AAMC'];
+    
+    // Perfect fit within band
+    if (timeMinutes >= config.bandMin && timeMinutes <= config.bandMax) {
+      return 0;
+    }
+    
+    // Calculate distance from target
+    return Math.abs(timeMinutes - config.target);
+  }
+
+  /**
+   * Calculate specificity match between anchor and resource
+   * Lower score is better (0 = exact match)
+   */
+  static calculateSpecificity(anchorKey: string, resourceKey: string): number {
+    const anchorParts = this.parseKey(anchorKey);
+    const resourceParts = this.parseKey(resourceKey);
+
+    // Exact match
+    if (anchorKey === resourceKey) {
+      return 0;
+    }
+
+    // Same category and subtopic
+    if (anchorParts.category === resourceParts.category && 
+        anchorParts.subtopic === resourceParts.subtopic) {
+      return 1;
+    }
+
+    // Same category only
+    if (anchorParts.category === resourceParts.category) {
+      return 2;
+    }
+
+    // No match
+    return 3;
+  }
+
+  /**
+   * Calculate numeric key order score
+   * Lower score comes first in sort
+   */
+  static calculateNumericOrder(key: string): number {
+    const parts = this.parseKey(key);
+    
+    // Use a large multiplier to ensure proper ordering
+    return (parts.subtopic * 1000) + parts.concept;
+  }
+
+  /**
+   * Get provider rank for sorting
+   * Lower number = higher priority
+   */
+  static getProviderRank(provider: string): number {
+    const ranks: Record<string, number> = {
+      'Khan Academy': 1,
+      'Kaplan': 2,
+      'Jack Westin': 3,
+      'UWorld': 4,
+      'AAMC': 5
+    };
+    return ranks[provider] || 999;
+  }
+
+  /**
+   * Get resource type for time-fit calculation
+   */
+  static getResourceType(resource: Resource): string {
+    if ('resource_type' in resource) {
+      switch (resource.resource_type) {
+        case 'Video': return 'KA video';
+        case 'Article': return 'KA article';
+        case 'Practice Passage': return 'Passage';
+        case 'Discrete Practice Question': return 'Discrete';
+        case 'CARS Passage': return 'Passage';
+        case 'Question Pack': return 'AAMC';
+        case 'Full Length': return 'AAMC';
+        default: return 'AAMC';
+      }
+    }
+    if ('high_yield' in resource) return 'Kaplan';
+    if ('question_count' in resource) return 'UWorld 10Q';
+    return 'AAMC';
+  }
+
+  /**
+   * Sort resources by all selection criteria
+   */
+  static sortResources(
+    resources: ResourceSelection[], 
+    anchorKey: string,
+    timeBudget: number
+  ): ResourceSelection[] {
+    return resources
+      .filter(r => r.time_minutes <= timeBudget)
+      .sort((a, b) => {
+        // 1. Specificity (lower is better)
+        if (a.specificity !== b.specificity) {
+          return a.specificity - b.specificity;
+        }
+
+        // 2. Numeric key order (lower is better)
+        const aNumeric = this.calculateNumericOrder(a.resource.key);
+        const bNumeric = this.calculateNumericOrder(b.resource.key);
+        if (aNumeric !== bNumeric) {
+          return aNumeric - bNumeric;
+        }
+
+        // 3. Time-fit (lower is better)
+        const aTimeFit = this.calculateTimeFit(a.time_minutes, this.getResourceType(a.resource));
+        const bTimeFit = this.calculateTimeFit(b.time_minutes, this.getResourceType(b.resource));
+        if (aTimeFit !== bTimeFit) {
+          return aTimeFit - bTimeFit;
+        }
+
+        // 4. Provider rank (lower is better)
+        const aProviderRank = this.getProviderRank(a.provider);
+        const bProviderRank = this.getProviderRank(b.provider);
+        if (aProviderRank !== bProviderRank) {
+          return aProviderRank - bProviderRank;
+        }
+
+        // 5. Title A-Z
+        const titleCompare = a.resource.title.localeCompare(b.resource.title);
+        if (titleCompare !== 0) {
+          return titleCompare;
+        }
+
+        // 6. Stable ID (if available)
+        const aStableId = a.resource.stable_id || '';
+        const bStableId = b.resource.stable_id || '';
+        return aStableId.localeCompare(bStableId);
+      });
+  }
+
+  /**
+   * Filter resources by high-yield status
+   */
+  static filterHighYield(resources: Resource[], topics: Topic[]): Resource[] {
+    const highYieldKeys = new Set(
+      topics.filter(t => t.high_yield).map(t => t.key)
+    );
+
+    return resources.filter(resource => {
+      // Check if any matching topic is high-yield
+      const matchingKeys = this.getMatchingKeys(resource.key);
+      return matchingKeys.some(key => highYieldKeys.has(key));
+    });
+  }
+
+  /**
+   * Check if resource is used in Phase 1
+   */
+  static isUsedInPhase1(resource: Resource, usedResources: Set<string>): boolean {
+    const resourceUid = this.getResourceUid(resource);
+    return usedResources.has(resourceUid);
+  }
+
+  /**
+   * Generate resource UID for tracking
+   */
+  static getResourceUid(resource: Resource): string {
+    if (resource.stable_id) {
+      return resource.stable_id;
+    }
+    // Fallback: use title + resource type + key for unique identification
+    return `${resource.title.toLowerCase().trim()}+${resource.key}`;
+  }
+
+  /**
+   * Check if two AAMC resources are from different packs
+   */
+  static areFromDifferentPacks(resource1: Resource, resource2: Resource): boolean {
+    const pack1 = (resource1 as any).pack_name || 'Unknown';
+    const pack2 = (resource2 as any).pack_name || 'Unknown';
+    return pack1 !== pack2;
+  }
+
+  /**
+   * Select resources for a specific slot with all constraints
+   */
+  static selectResourcesForSlot(
+    anchor: Topic,
+    slotType: string,
+    phase: number,
+    availableResources: Resource[],
+    usedResources: Set<string>,
+    timeBudget: number,
+    topics: Topic[],
+    sameDayUsed: Set<string> = new Set()
+  ): ResourceSelection[] {
+    // 1. Get matching keys with fallback
+    const matchingKeys = this.getMatchingKeys(anchor.key);
+    
+    // 2. Filter by slot type and matching keys
+    let candidates = availableResources.filter(resource => {
+      const resourceKeys = this.getMatchingKeys(resource.key);
+      return matchingKeys.some(key => resourceKeys.includes(key)) &&
+             this.matchesSlotType(resource, slotType);
+    });
+
+    // 3. Filter by high-yield for Phases 1-2
+    if (phase <= 2) {
+      const highYieldCandidates = this.filterHighYield(candidates, topics);
+      if (highYieldCandidates.length > 0) {
+        candidates = highYieldCandidates;
+      }
+    }
+
+    // 4. Filter by never-repeat constraint
+    candidates = candidates.filter(resource => 
+      !usedResources.has(this.getResourceUid(resource))
+    );
+
+    // 5. Filter by same-day deduplication
+    candidates = candidates.filter(resource => 
+      !sameDayUsed.has(this.getResourceUid(resource))
+    );
+
+    // 6. Phase-specific filtering
+    if (phase === 2) {
+      // Phase 2 discretes must not be used in Phase 1
+      candidates = candidates.filter(resource => 
+        !this.isUsedInPhase1(resource, usedResources)
+      );
+    }
+
+    // 7. Convert to ResourceSelection objects
+    const selections: ResourceSelection[] = candidates.map(resource => ({
+      resource,
+      provider: this.getProvider(resource),
+      time_minutes: resource.time_minutes,
+      specificity: this.calculateSpecificity(anchor.key, resource.key)
+    }));
+
+    // 8. Sort by all criteria
+    return this.sortResources(selections, anchor.key, timeBudget);
+  }
+
+  /**
+   * Check if resource matches slot type
+   */
+  private static matchesSlotType(resource: Resource, slotType: string): boolean {
+    if ('resource_type' in resource) {
+      switch (slotType) {
+        case 'ka_video': return resource.resource_type === 'Video';
+        case 'ka_article': return resource.resource_type === 'Article';
+        case 'ka_discrete': return resource.resource_type === 'Discrete Practice Question';
+        case 'jw_discrete': return resource.resource_type === 'Discrete Practice Question';
+        case 'jw_passage': return resource.resource_type === 'CARS Passage';
+        case 'aamc_cars': return resource.resource_type === 'CARS Passage';
+        case 'aamc_set': return resource.resource_type === 'Question Pack';
+        default: return false;
+      }
+    }
+    if ('high_yield' in resource) return slotType === 'kaplan';
+    if ('question_count' in resource) return slotType === 'uworld';
+    return false;
+  }
+
+  /**
+   * Get provider name for resource
+   */
+  private static getProvider(resource: Resource): string {
+    if ('resource_type' in resource) {
+      if (['Video', 'Article', 'Practice Passage', 'Discrete Practice Question'].includes(resource.resource_type)) {
+        return 'Khan Academy';
+      }
+      if (resource.resource_type === 'CARS Passage') {
+        return 'Jack Westin';
+      }
+      if (['Question Pack', 'Full Length'].includes(resource.resource_type)) {
+        return 'AAMC';
+      }
+    }
+    if ('high_yield' in resource) return 'Kaplan';
+    if ('question_count' in resource) return 'UWorld';
+    return 'Unknown';
+  }
+}

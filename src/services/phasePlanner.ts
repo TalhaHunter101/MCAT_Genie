@@ -1,13 +1,20 @@
 import { ResourceManager } from './resourceManager';
-import { Topic, ScheduleDay, ResourceSelection } from '../models/types';
+import { Topic, ScheduleDay, ResourceSelection, Resource } from '../models/types';
 import { DateUtils } from '../utils/dateUtils';
+import { ResourceSelectionUtils } from '../utils/resourceSelectionUtils';
 
 export class PhasePlanner {
   private resourceManager: ResourceManager;
   private usedResources: Set<string> = new Set();
+  private topics: Topic[] = [];
 
   constructor(resourceManager: ResourceManager) {
     this.resourceManager = resourceManager;
+  }
+
+  async initialize(topics: Topic[]): Promise<void> {
+    this.topics = topics;
+    this.usedResources = await this.resourceManager.getUsedResources();
   }
 
   async planPhase1Day(
@@ -24,60 +31,85 @@ export class PhasePlanner {
     };
 
     let remainingTime = 240; // 4 hours in minutes
+    const sameDayUsed = new Set<string>();
 
-    // 1. Science content: 1 Kaplan section + matching KA content
+    // Phase 1 Goal: Always pair Kaplan with matching KA content
+    // Order: Science content → Science discretes → CARS → Review
+
+    // 1. Science content: 1 Kaplan section + matching KA content (videos + articles)
     const kaplanResources = await this.resourceManager.getKaplanResources(anchor.key, true);
     const kaVideos = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Video');
     const kaArticles = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Article');
 
-    if (kaplanResources.length > 0 && remainingTime >= 30) {
-      const kaplan = kaplanResources[0];
-      blocks.science_content.push(kaplan.title);
+    // Select Kaplan section with high-yield priority
+    const kaplanSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'kaplan', 1, kaplanResources, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    if (kaplanSelections.length > 0) {
+      const kaplan = kaplanSelections[0];
+      blocks.science_content.push(kaplan.resource.title);
       remainingTime -= kaplan.time_minutes;
-      await this.resourceManager.markResourceAsUsed(kaplan, 'Kaplan', DateUtils.formatDate(date));
+      sameDayUsed.add(ResourceSelectionUtils.getResourceUid(kaplan.resource));
+      await this.resourceManager.markResourceAsUsed(kaplan.resource, kaplan.provider, DateUtils.formatDate(date));
     }
 
-    // Add matching KA content
-    for (const video of kaVideos.slice(0, 2)) {
-      if (remainingTime >= video.time_minutes && !usedResources.has(this.getResourceUid(video))) {
-        blocks.science_content.push(video.title);
-        remainingTime -= video.time_minutes;
-        await this.resourceManager.markResourceAsUsed(video, 'Khan Academy', DateUtils.formatDate(date));
-        break;
+    // Add matching KA content (videos + articles)
+    const kaVideoSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'ka_video', 1, kaVideos, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    for (const selection of kaVideoSelections.slice(0, 2)) {
+      if (remainingTime >= selection.time_minutes) {
+        blocks.science_content.push(selection.resource.title);
+        remainingTime -= selection.time_minutes;
+        sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
+        await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
       }
     }
 
-    for (const article of kaArticles.slice(0, 1)) {
-      if (remainingTime >= article.time_minutes && !usedResources.has(this.getResourceUid(article))) {
-        blocks.science_content.push(article.title);
-        remainingTime -= article.time_minutes;
-        await this.resourceManager.markResourceAsUsed(article, 'Khan Academy', DateUtils.formatDate(date));
-        break;
+    const kaArticleSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'ka_article', 1, kaArticles, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    for (const selection of kaArticleSelections.slice(0, 1)) {
+      if (remainingTime >= selection.time_minutes) {
+        blocks.science_content.push(selection.resource.title);
+        remainingTime -= selection.time_minutes;
+        sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
+        await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
       }
     }
 
     // 2. Science discretes: 1 KA or Jack Westin discrete set
     const kaDiscretes = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Discrete Practice Question');
     const jwDiscretes = await this.resourceManager.getJackWestinResources(anchor.key, 'Discrete Practice Question');
+    const allDiscretes = [...kaDiscretes, ...jwDiscretes];
 
-    const discreteOptions = [...kaDiscretes, ...jwDiscretes].filter(d => 
-      !usedResources.has(this.getResourceUid(d)) && remainingTime >= d.time_minutes
+    const discreteSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'ka_discrete', 1, allDiscretes, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
-    if (discreteOptions.length > 0) {
-      const discrete = discreteOptions[0];
-      blocks.science_discretes.push(discrete.title);
+    if (discreteSelections.length > 0) {
+      const discrete = discreteSelections[0];
+      blocks.science_discretes.push(discrete.resource.title);
       remainingTime -= discrete.time_minutes;
-      await this.resourceManager.markResourceAsUsed(discrete, this.getProvider(discrete), DateUtils.formatDate(date));
+      sameDayUsed.add(ResourceSelectionUtils.getResourceUid(discrete.resource));
+      await this.resourceManager.markResourceAsUsed(discrete.resource, discrete.provider, DateUtils.formatDate(date));
     }
 
-    // 3. CARS: 2 Jack Westin passages
+    // 3. CARS: 2 Jack Westin passages (Phase 1 uses Jack Westin only)
     const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key, 'CARS Passage');
-    for (const passage of carsPassages.slice(0, 2)) {
-      if (remainingTime >= passage.time_minutes && !usedResources.has(this.getResourceUid(passage))) {
-        blocks.cars.push(passage.title);
-        remainingTime -= passage.time_minutes;
-        await this.resourceManager.markResourceAsUsed(passage, 'Jack Westin', DateUtils.formatDate(date));
+    const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'jw_passage', 1, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    for (const selection of carsSelections.slice(0, 2)) {
+      if (remainingTime >= selection.time_minutes) {
+        blocks.cars.push(selection.resource.title);
+        remainingTime -= selection.time_minutes;
+        sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
+        await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
       }
     }
 
@@ -106,48 +138,74 @@ export class PhasePlanner {
     };
 
     let remainingTime = 240;
+    const sameDayUsed = new Set<string>();
 
-    // 1. Science passages: 2 third-party passages
+    // Phase 2 Order: Science passages → UWorld → Extra discretes → CARS → Review
+
+    // 1. Science passages: 2 third-party (same category/subtopic as anchor OK)
     const jwPassages = await this.resourceManager.getJackWestinResources(anchor.key, 'CARS Passage');
-    for (const passage of jwPassages.slice(0, 2)) {
-      if (remainingTime >= passage.time_minutes && !usedResources.has(this.getResourceUid(passage))) {
-        blocks.science_passages.push(passage.title);
-        remainingTime -= passage.time_minutes;
-        await this.resourceManager.markResourceAsUsed(passage, 'Jack Westin', DateUtils.formatDate(date));
+    const passageSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'jw_passage', 2, jwPassages, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    for (const selection of passageSelections.slice(0, 2)) {
+      if (remainingTime >= selection.time_minutes) {
+        blocks.science_passages.push(selection.resource.title);
+        remainingTime -= selection.time_minutes;
+        sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
+        await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
       }
     }
 
     // 2. UWorld: 1 set (10Q)
     const uworldResources = await this.resourceManager.getUWorldResources(anchor.key);
-    if (uworldResources.length > 0 && remainingTime >= 30) {
-      const uworld = uworldResources[0];
-      blocks.uworld_set.push(uworld.title);
-      remainingTime -= uworld.time_minutes;
-      await this.resourceManager.markResourceAsUsed(uworld, 'UWorld', DateUtils.formatDate(date));
-    }
-
-    // 3. Extra discretes: 1-2 discrete sets (not used in Phase 1)
-    const kaDiscretes = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Discrete Practice Question');
-    const jwDiscretes = await this.resourceManager.getJackWestinResources(anchor.key, 'Discrete Practice Question');
-
-    const discreteOptions = [...kaDiscretes, ...jwDiscretes].filter(d => 
-      !usedResources.has(this.getResourceUid(d)) && remainingTime >= d.time_minutes
+    const uworldSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'uworld', 2, uworldResources, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
-    for (const discrete of discreteOptions.slice(0, 2)) {
-      if (remainingTime >= discrete.time_minutes) {
-        blocks.extra_discretes.push(discrete.title);
-        remainingTime -= discrete.time_minutes;
-        await this.resourceManager.markResourceAsUsed(discrete, this.getProvider(discrete), DateUtils.formatDate(date));
+    if (uworldSelections.length > 0) {
+      const uworld = uworldSelections[0];
+      blocks.uworld_set.push(uworld.resource.title);
+      remainingTime -= uworld.time_minutes;
+      sameDayUsed.add(ResourceSelectionUtils.getResourceUid(uworld.resource));
+      await this.resourceManager.markResourceAsUsed(uworld.resource, uworld.provider, DateUtils.formatDate(date));
+    }
+
+    // 3. Extra discretes: 1-2 discrete sets (NOT used in Phase 1)
+    const kaDiscretes = await this.resourceManager.getKhanAcademyResources(anchor.key, 'Discrete Practice Question');
+    const jwDiscretes = await this.resourceManager.getJackWestinResources(anchor.key, 'Discrete Practice Question');
+    const allDiscretes = [...kaDiscretes, ...jwDiscretes];
+
+    // Filter out resources used in Phase 1
+    const phase1UnusedDiscretes = allDiscretes.filter(d => 
+      !ResourceSelectionUtils.isUsedInPhase1(d, usedResources)
+    );
+
+    const discreteSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'ka_discrete', 2, phase1UnusedDiscretes, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    for (const selection of discreteSelections.slice(0, 2)) {
+      if (remainingTime >= selection.time_minutes) {
+        blocks.extra_discretes.push(selection.resource.title);
+        remainingTime -= selection.time_minutes;
+        sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
+        await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
       }
     }
 
-    // 4. CARS: 2 Jack Westin passages
-    for (const passage of jwPassages.slice(0, 2)) {
-      if (remainingTime >= passage.time_minutes && !usedResources.has(this.getResourceUid(passage))) {
-        blocks.cars.push(passage.title);
-        remainingTime -= passage.time_minutes;
-        await this.resourceManager.markResourceAsUsed(passage, 'Jack Westin', DateUtils.formatDate(date));
+    // 4. CARS: 2 Jack Westin passages (Phase 2 uses Jack Westin only)
+    const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key, 'CARS Passage');
+    const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'jw_passage', 2, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    for (const selection of carsSelections.slice(0, 2)) {
+      if (remainingTime >= selection.time_minutes) {
+        blocks.cars.push(selection.resource.title);
+        remainingTime -= selection.time_minutes;
+        sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
+        await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
       }
     }
 
@@ -174,30 +232,46 @@ export class PhasePlanner {
     };
 
     let remainingTime = 240;
+    const sameDayUsed = new Set<string>();
+
+    // Phase 3 Order: AAMC sets → AAMC CARS → Review
 
     // 1. AAMC sets: 2 × (20-30Q) from different packs
     const aamcSets = await this.resourceManager.getAAMCResources(anchor.key, 'Question Pack');
-    const usedPacks = new Set<string>();
+    const aamcSetSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'aamc_set', 3, aamcSets, usedResources, remainingTime, this.topics, sameDayUsed
+    );
 
-    for (const aamcSet of aamcSets.slice(0, 2)) {
-      if (remainingTime >= aamcSet.time_minutes && !usedResources.has(this.getResourceUid(aamcSet))) {
-        const packName = (aamcSet as any).pack_name || 'Unknown';
-        if (!usedPacks.has(packName)) {
-          blocks.aamc_sets.push(aamcSet.title);
-          remainingTime -= aamcSet.time_minutes;
+    const usedPacks = new Set<string>();
+    for (const selection of aamcSetSelections) {
+      if (remainingTime >= selection.time_minutes) {
+        const packName = (selection.resource as any).pack_name || 'Unknown';
+        
+        // Ensure different packs unless nothing else available
+        if (usedPacks.size === 0 || !usedPacks.has(packName) || usedPacks.size === 1) {
+          blocks.aamc_sets.push(selection.resource.title);
+          remainingTime -= selection.time_minutes;
+          sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
           usedPacks.add(packName);
-          await this.resourceManager.markResourceAsUsed(aamcSet, 'AAMC', DateUtils.formatDate(date));
+          await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
+          
+          if (blocks.aamc_sets.length >= 2) break;
         }
       }
     }
 
-    // 2. AAMC CARS passages: 2
+    // 2. AAMC CARS passages: 2 (Phase 3 uses AAMC only)
     const aamcCars = await this.resourceManager.getAAMCResources(anchor.key, 'CARS Passage');
-    for (const passage of aamcCars.slice(0, 2)) {
-      if (remainingTime >= passage.time_minutes && !usedResources.has(this.getResourceUid(passage))) {
-        blocks.aamc_CARS_passages.push(passage.title);
-        remainingTime -= passage.time_minutes;
-        await this.resourceManager.markResourceAsUsed(passage, 'AAMC', DateUtils.formatDate(date));
+    const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
+      anchor, 'aamc_cars', 3, aamcCars, usedResources, remainingTime, this.topics, sameDayUsed
+    );
+
+    for (const selection of carsSelections.slice(0, 2)) {
+      if (remainingTime >= selection.time_minutes) {
+        blocks.aamc_CARS_passages.push(selection.resource.title);
+        remainingTime -= selection.time_minutes;
+        sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
+        await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
       }
     }
 
@@ -211,31 +285,4 @@ export class PhasePlanner {
     };
   }
 
-  private getResourceUid(resource: any): string {
-    if (resource.stable_id) {
-      return resource.stable_id;
-    }
-    return `${resource.title.toLowerCase().trim()}+${resource.url}`;
-  }
-
-  private getProvider(resource: any): string {
-    if (resource.resource_type) {
-      if (['Video', 'Article', 'Practice Passage', 'Discrete Practice Question'].includes(resource.resource_type)) {
-        return 'Khan Academy';
-      }
-      if (resource.resource_type === 'CARS Passage') {
-        return 'Jack Westin';
-      }
-      if (['Question Pack', 'Full Length'].includes(resource.resource_type)) {
-        return 'AAMC';
-      }
-    }
-    if (resource.high_yield !== undefined) {
-      return 'Kaplan';
-    }
-    if (resource.question_count !== undefined) {
-      return 'UWorld';
-    }
-    return 'Unknown';
-  }
 }
