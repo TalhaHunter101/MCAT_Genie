@@ -42,7 +42,6 @@ export class ScheduleGenerator {
     const schedule: ScheduleDay[] = [];
     let studyDayIndex = 0;
     let currentTopicIndex = 0;
-    const usedResources = await this.resourceManager.getUsedResources();
 
     for (const date of allDates) {
       if (DateUtils.isStudyDay(date, availability)) {
@@ -63,6 +62,9 @@ export class ScheduleGenerator {
           });
         } else {
           // Regular study day
+          // CRITICAL FIX: Refresh used resources from DB before each day
+          const usedResources = await this.resourceManager.getUsedResources();
+          
           const phase = DateUtils.getPhaseForDay(studyDayIndex, phaseInfo);
           const anchor = this.selectAnchor(topics, currentTopicIndex, phase, priorities);
           
@@ -113,18 +115,34 @@ export class ScheduleGenerator {
   }
 
   private selectAnchor(topics: Topic[], currentIndex: number, phase: number, priorities: string[]): Topic {
-    // For Phase 1 & 2, use high-yield topics only under priorities
+    // For Phase 1 & 2, prioritize high-yield but rotate across categories
     // For Phase 3, can use any topic
     if (phase <= 2) {
       const hyTopics = topics.filter(t => t.high_yield);
       if (hyTopics.length > 0) {
-        // Select from highest priority category with high-yield remaining
-        for (const priority of priorities) {
-          const priorityHyTopics = hyTopics.filter(t => t.key.startsWith(priority));
-          if (priorityHyTopics.length > 0) {
-            return priorityHyTopics[currentIndex % priorityHyTopics.length];
+        // Rotate through priority categories to avoid exhausting one category's resources
+        // Group topics by category
+        const categoryGroups: Record<string, Topic[]> = {};
+        for (const topic of hyTopics) {
+          const category = topic.key.split('.')[0];
+          if (priorities.includes(category)) {
+            if (!categoryGroups[category]) {
+              categoryGroups[category] = [];
+            }
+            categoryGroups[category].push(topic);
           }
         }
+        
+        // Select category in round-robin fashion based on currentIndex
+        const availableCategories = priorities.filter(p => categoryGroups[p] && categoryGroups[p].length > 0);
+        if (availableCategories.length > 0) {
+          const categoryIndex = currentIndex % availableCategories.length;
+          const selectedCategory = availableCategories[categoryIndex];
+          const categoryTopics = categoryGroups[selectedCategory];
+          const topicIndex = Math.floor(currentIndex / availableCategories.length) % categoryTopics.length;
+          return categoryTopics[topicIndex];
+        }
+        
         // Fallback to any high-yield topic
         return hyTopics[currentIndex % hyTopics.length];
       }

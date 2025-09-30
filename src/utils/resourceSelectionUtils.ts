@@ -286,18 +286,31 @@ export class ResourceSelectionUtils {
       return slotMatch;
     });
 
-    // 2. Filter by high-yield for Phases 1-2
+    // 2. Filter by high-yield for Phases 1-2 (PREFERENCE, not requirement)
+    // Sort high-yield to the top, but keep low-yield as fallback
     if (phase <= 2) {
       const highYieldCandidates = this.filterHighYield(candidates, topics);
-      if (highYieldCandidates.length > 0) {
-        candidates = highYieldCandidates;
-      }
+      const lowYieldCandidates = candidates.filter(c => 
+        !highYieldCandidates.find(hy => this.getResourceUid(hy) === this.getResourceUid(c))
+      );
+      // Place high-yield first, then low-yield as fallback
+      candidates = [...highYieldCandidates, ...lowYieldCandidates];
     }
 
-    // 3. Filter by never-repeat constraint
-    candidates = candidates.filter(resource => 
-      !usedResources.has(this.getResourceUid(resource))
-    );
+    // 3. Filter by never-repeat constraint (except AAMC/UWorld which can repeat)
+    // Per requirements: "UWorld can repeat while sets remain" and AAMC has limited resources
+    const isUWorld = slotType === 'uworld';
+    const isAAMC = phase === 3;
+    
+    if (isAAMC || isUWorld) {
+      // Phase 3 (AAMC) and UWorld: Allow repetition across days
+      // Only filter same-day duplicates (done in next step)
+    } else {
+      // Phases 1-2: Strict never-repeat for KA/Kaplan/JW
+      candidates = candidates.filter(resource => 
+        !usedResources.has(this.getResourceUid(resource))
+      );
+    }
 
     // 4. Filter by same-day deduplication
     candidates = candidates.filter(resource => 
