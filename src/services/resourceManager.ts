@@ -166,6 +166,48 @@ export class ResourceManager {
     }
   }
 
+  async getCarsPassages(): Promise<Resource[]> {
+    const client = await pool.connect();
+    try {
+      // Get CARS passages from Jack Westin - these are NOT topic-specific
+      // They should be at the bottom of the Jack Westin Resources sheet
+      // Try multiple approaches to find CARS passages
+      const query = `
+        SELECT * FROM jack_westin_resources 
+        WHERE resource_type = 'aamc_style_passage' 
+        AND (
+          title ILIKE '%cars%' OR 
+          title ILIKE '%literature%' OR 
+          title ILIKE '%humanities%' OR 
+          title ILIKE '%social%' OR
+          title ILIKE '%reading%' OR
+          title ILIKE '%passage%'
+        )
+        ORDER BY RANDOM()
+      `;
+      
+      const result = await client.query(query);
+      console.log(`Found ${result.rows.length} CARS passages`);
+      
+      // If no specific CARS passages found, get all aamc_style_passage resources
+      if (result.rows.length === 0) {
+        const fallbackQuery = `
+          SELECT * FROM jack_westin_resources 
+          WHERE resource_type = 'aamc_style_passage'
+          ORDER BY RANDOM()
+          LIMIT 20
+        `;
+        const fallbackResult = await client.query(fallbackQuery);
+        console.log(`Fallback: Found ${fallbackResult.rows.length} aamc_style_passage resources`);
+        return fallbackResult.rows;
+      }
+      
+      return result.rows;
+    } finally {
+      client.release();
+    }
+  }
+
   async getUWorldResources(key: string): Promise<Resource[]> {
     const client = await pool.connect();
     try {
