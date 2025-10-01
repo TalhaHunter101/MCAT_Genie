@@ -14,8 +14,20 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.set('trust proxy', 1);
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow no-origin requests (like curl or same-origin)
+    if (!origin) return callback(null, true);
+    // Permit localhost and ngrok domains
+    const allowed = /^(https?:\/\/localhost:\d+|https?:\/\/[a-z0-9-]+\.(ngrok\.io|ngrok-free\.app))$/i;
+    if (allowed.test(origin)) return callback(null, true);
+    return callback(null, false);
+  },
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

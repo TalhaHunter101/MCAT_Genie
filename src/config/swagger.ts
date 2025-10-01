@@ -13,12 +13,7 @@ const options = {
         email: 'support@mcatplanner.com'
       }
     },
-    servers: [
-      {
-        url: 'http://localhost:3000',
-        description: 'Development server'
-      }
-    ],
+    servers: [],
     components: {
       schemas: {
         ScheduleDay: {
@@ -185,6 +180,17 @@ export const swaggerSpec = swaggerJsdoc(options);
 export const setupSwagger = (app: Express) => {
   const swaggerUi = require('swagger-ui-express');
   
+  // Dynamically set server URL from incoming request to support ngrok and localhost
+  app.use((req, _res, next) => {
+    const protocol = (req.headers['x-forwarded-proto'] as string) || req.protocol;
+    const host = req.get('host');
+    const url = `${protocol}://${host}`;
+    (swaggerSpec as any).servers = [
+      { url, description: 'Current server' }
+    ];
+    next();
+  });
+
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
     customCss: '.swagger-ui .topbar { display: none }',
     customSiteTitle: 'MCAT Study Schedule Planner API'
