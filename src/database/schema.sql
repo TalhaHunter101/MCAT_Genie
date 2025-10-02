@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS topics (
 CREATE TABLE IF NOT EXISTS khan_academy_resources (
     id SERIAL PRIMARY KEY,
     stable_id VARCHAR(100),
-    title VARCHAR(500) NOT NULL,
+    title VARCHAR(1000) NOT NULL,
     resource_type VARCHAR(50) NOT NULL,
     key VARCHAR(20) NOT NULL,
     time_minutes INTEGER,
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS khan_academy_resources (
 CREATE TABLE IF NOT EXISTS kaplan_resources (
     id SERIAL PRIMARY KEY,
     stable_id VARCHAR(100),
-    title VARCHAR(500) NOT NULL,
+    title VARCHAR(1000) NOT NULL,
     key VARCHAR(20) NOT NULL,
     time_minutes INTEGER DEFAULT 30,
     high_yield BOOLEAN NOT NULL DEFAULT FALSE,
@@ -40,10 +40,11 @@ CREATE TABLE IF NOT EXISTS kaplan_resources (
 CREATE TABLE IF NOT EXISTS jack_westin_resources (
     id SERIAL PRIMARY KEY,
     stable_id VARCHAR(100),
-    title VARCHAR(500) NOT NULL,
+    title VARCHAR(1000) NOT NULL,
     resource_type VARCHAR(50) NOT NULL,
     key VARCHAR(20) NOT NULL,
     time_minutes INTEGER,
+    cars_resource BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -51,7 +52,7 @@ CREATE TABLE IF NOT EXISTS jack_westin_resources (
 CREATE TABLE IF NOT EXISTS uworld_resources (
     id SERIAL PRIMARY KEY,
     stable_id VARCHAR(100),
-    title VARCHAR(500) NOT NULL,
+    title VARCHAR(1000) NOT NULL,
     key VARCHAR(20) NOT NULL,
     time_minutes INTEGER DEFAULT 30,
     question_count INTEGER DEFAULT 10,
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS uworld_resources (
 CREATE TABLE IF NOT EXISTS aamc_resources (
     id SERIAL PRIMARY KEY,
     stable_id VARCHAR(100),
-    title VARCHAR(500) NOT NULL,
+    title VARCHAR(1000) NOT NULL,
     resource_type VARCHAR(50) NOT NULL,
     key VARCHAR(20) NOT NULL,
     time_minutes INTEGER,
@@ -76,7 +77,7 @@ CREATE TABLE IF NOT EXISTS used_resources (
     schedule_id VARCHAR(100) NOT NULL,
     provider VARCHAR(50) NOT NULL,
     resource_id INTEGER NOT NULL,
-    resource_uid VARCHAR(200) NOT NULL,
+    resource_uid VARCHAR(1000) NOT NULL,
     used_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(schedule_id, resource_uid)
