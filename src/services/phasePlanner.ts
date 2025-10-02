@@ -359,7 +359,11 @@ export class PhasePlanner {
     const cleanAamcSets = aamcSets.filter(r => 
       !r.title.includes('This color') && 
       !r.title.includes('developer') &&
-      !r.title.includes('note')
+      !r.title.includes('note') &&
+      // Ensure CARS-labeled packs are not consumed as general sets
+      !r.title.includes('CARS') &&
+      // Exclude label rows such as the section header
+      r.title.trim() !== 'Critical Analysis and Reasoning Skills'
     );
     const aamcSetSelections = ResourceSelectionUtils.selectResourcesForSlot(
       anchor, 'aamc_set', 3, cleanAamcSets, usedResources, remainingTime, this.topics, sameDayUsed
@@ -390,7 +394,8 @@ export class PhasePlanner {
       r.title.includes('CARS') && 
       !r.title.includes('This color') && 
       !r.title.includes('developer') &&
-      !r.title.includes('note')
+      !r.title.includes('note') &&
+      r.title.trim() !== 'Critical Analysis and Reasoning Skills'
     );
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
       anchor, 'aamc_set', 3, aamcCars, usedResources, remainingTime, this.topics, sameDayUsed
