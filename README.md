@@ -474,9 +474,11 @@ The application uses PostgreSQL with the following main tables:
 - `khan_academy_resources`: Khan Academy videos, articles, and practice materials (1,584 entries)
 - `kaplan_resources`: Kaplan science sections with high-yield markers (280 entries)
 - `jack_westin_resources`: Jack Westin CARS passages and discretes (996 entries)
+  - **CARS passages**: Flagged with `cars_resource = true` for proper separation
 - `uworld_resources`: UWorld question sets that can repeat (31 entries)
 - `aamc_resources`: AAMC question packs and full-length exams (28 entries)
 - `used_resources`: Tracks resources used in each schedule (prevents repetition)
+  - **Extended columns**: Title and resource_uid columns now support up to 1000 characters
 
 ### **Resource Key Mapping**
 Resources use hierarchical keys for matching:
@@ -497,6 +499,7 @@ The system automatically falls back through these levels when exact matches aren
   - Maps 6 different Excel sheets to database tables
   - Provides default timing for resources without specified times
   - Validates data integrity during loading
+  - **CARS section detection**: Identifies and flags CARS passages with `cars_resource` boolean
 
 #### **2. ResourceManager (`src/services/resourceManager.ts`)**
 - **Purpose**: Manages resource queries and usage tracking
@@ -505,6 +508,7 @@ The system automatically falls back through these levels when exact matches aren
   - Tracks used resources across schedules
   - Implements never-repeat constraint
   - Handles resource UID generation
+  - **CARS passage management**: Dedicated `getCarsPassages()` method for CARS-specific resources
 
 #### **3. ResourceSelectionUtils (`src/utils/resourceSelectionUtils.ts`)**
 - **Purpose**: Implements complex resource selection algorithm
@@ -715,6 +719,37 @@ Example error response:
 ```
 
 ## Recent Improvements & Optimizations
+
+### **v2.2 Latest Fixes** (January 2025)
+
+#### **1. CARS Passages Implementation** 🔴 CRITICAL
+- **Issue**: CARS passages not properly identified and filtered from Jack Westin resources
+- **Root Cause**: Missing CARS section detection and resource flagging in data loader
+- **Solution**: Implemented dedicated CARS detection logic:
+  - Added `carsSectionStarted` flag to detect CARS section headers
+  - Created `cars_resource` boolean flag in database schema
+  - Implemented `getCarsPassages()` method in ResourceManager
+  - Added CARS-specific key generation (`CARS.x.x`) for non-topic-specific resources
+- **Result**: **Proper CARS passage separation** from science passages, **100% phase compliance**
+
+#### **2. Database Column Length Migration** 🟡 HIGH PRIORITY
+- **Issue**: "value too long for type character varying(200)" errors during resource scheduling
+- **Root Cause**: Resource titles exceeding 200-character database column limit
+- **Solution**: Created `migrate-columns.ts` to update all title columns:
+  - Extended `title` columns to `VARCHAR(1000)` across all resource tables
+  - Updated `used_resources.resource_uid` to `VARCHAR(1000)`
+  - Added migration script for database schema updates
+- **Result**: **Zero length constraint violations**, **stable resource tracking**
+
+#### **3. Enhanced CARS Resource Selection** 🟢 MEDIUM PRIORITY
+- **Issue**: CARS passages incorrectly filtered by science topic anchors
+- **Root Cause**: CARS resources being treated as science-based content
+- **Solution**: 
+  - CARS passages now use dedicated `getCarsPassages()` method
+  - CARS resources marked with `cars_resource = true` flag
+  - CARS selection independent of science anchor topics
+  - Proper random ordering for CARS passage variety
+- **Result**: **Authentic CARS practice** with proper passage variety
 
 ### **v2.1 Major Enhancements** (September 2025)
 
