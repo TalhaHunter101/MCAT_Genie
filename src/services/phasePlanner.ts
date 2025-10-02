@@ -118,9 +118,10 @@ export class PhasePlanner {
     }
 
     // 3. CARS: 2 Jack Westin passages (Phase 1 uses Jack Westin only)
-    const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key);
+    // CARS passages are NOT science-based and should be randomly assorted
+    const carsPassages = await this.resourceManager.getCarsPassages();
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
-      anchor, 'jw_passage', 1, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
+      anchor, 'jw_passage', 2, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
     for (const selection of carsSelections.slice(0, 2)) {
@@ -276,15 +277,13 @@ export class PhasePlanner {
     }
 
     // 4. CARS: 2 Jack Westin passages (Phase 2 uses Jack Westin only)
-    const carsPassages = await this.resourceManager.getJackWestinResources(anchor.key);
-    // Filter for CARS passages specifically by filtering by title containing "CARS"
-    const carsOnlyPassages = carsPassages.filter(resource => 
-      resource.title.toLowerCase().includes('cars')
-    );
+    // CARS passages are NOT science-based and should be randomly assorted
+    const carsPassages = await this.resourceManager.getCarsPassages();
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
-      anchor, 'jw_passage', 2, carsOnlyPassages, usedResources, remainingTime, this.topics, sameDayUsed
+      anchor, 'jw_passage', 2, carsPassages, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
+    // Add exactly 2 CARS passages (2x/day as requested)
     for (const selection of carsSelections.slice(0, 2)) {
       if (remainingTime >= selection.time_minutes) {
         blocks.cars.push(selection.resource.title);
@@ -311,19 +310,7 @@ export class PhasePlanner {
       }
     }
 
-    // Add 1 more CARS if time remains
-    if (remainingTime >= 20 && (240 - remainingTime) < targetTime) {
-      for (const selection of carsSelections.slice(2, 3)) {
-        if (remainingTime >= selection.time_minutes && 
-            !sameDayUsed.has(ResourceSelectionUtils.getResourceUid(selection.resource))) {
-          blocks.cars.push(selection.resource.title);
-          remainingTime -= selection.time_minutes;
-          sameDayUsed.add(ResourceSelectionUtils.getResourceUid(selection.resource));
-          await this.resourceManager.markResourceAsUsed(selection.resource, selection.provider, DateUtils.formatDate(date));
-          break;
-        }
-      }
-    }
+    // DON'T add more CARS - client wants exactly 2x/day
 
     // Add 1 more discrete if time remains
     if (remainingTime >= 25 && (240 - remainingTime) < targetTime) {
@@ -368,8 +355,18 @@ export class PhasePlanner {
 
     // 1. AAMC sets: 2 × (20-30Q) from different packs
     const aamcSets = await this.resourceManager.getAAMCResources(anchor.key, 'Question Pack');
+    // Filter out developer notes from AAMC sets
+    const cleanAamcSets = aamcSets.filter(r => 
+      !r.title.includes('This color') && 
+      !r.title.includes('developer') &&
+      !r.title.includes('note') &&
+      // Ensure CARS-labeled packs are not consumed as general sets
+      !r.title.includes('CARS') &&
+      // Exclude label rows such as the section header
+      r.title.trim() !== 'Critical Analysis and Reasoning Skills'
+    );
     const aamcSetSelections = ResourceSelectionUtils.selectResourcesForSlot(
-      anchor, 'aamc_set', 3, aamcSets, usedResources, remainingTime, this.topics, sameDayUsed
+      anchor, 'aamc_set', 3, cleanAamcSets, usedResources, remainingTime, this.topics, sameDayUsed
     );
 
     const usedPacks = new Set<string>();
@@ -391,9 +388,15 @@ export class PhasePlanner {
     }
 
     // 2. AAMC CARS passages: 2 (Phase 3 uses AAMC only)
-    // AAMC CARS resources are Question Packs with "CARS" in the title
     const allAamcResources = await this.resourceManager.getAAMCResources(anchor.key, 'Question Pack');
-    const aamcCars = allAamcResources.filter(r => r.title.includes('CARS'));
+    // Filter out developer notes and get actual CARS passages
+    const aamcCars = allAamcResources.filter(r => 
+      r.title.includes('CARS') && 
+      !r.title.includes('This color') && 
+      !r.title.includes('developer') &&
+      !r.title.includes('note') &&
+      r.title.trim() !== 'Critical Analysis and Reasoning Skills'
+    );
     const carsSelections = ResourceSelectionUtils.selectResourcesForSlot(
       anchor, 'aamc_set', 3, aamcCars, usedResources, remainingTime, this.topics, sameDayUsed
     );

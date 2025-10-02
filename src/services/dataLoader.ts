@@ -99,12 +99,28 @@ export class DataLoader {
         // Truncate key if it's too long for the database constraint
         const truncatedKey = key.toString().substring(0, 20);
 
+        // Extract URL from url object and concatenate with title
+        const urlValue = row['url'];
+        let finalTitle = row['title'];
+        if (urlValue) {
+          let url = '';
+          if (typeof urlValue === 'object' && urlValue.hyperlink) {
+            url = urlValue.hyperlink;
+          } else if (typeof urlValue === 'string' && urlValue.startsWith('http')) {
+            url = urlValue;
+          }
+          
+          if (url) {
+            finalTitle = `${row['title']} - ${url}`;
+          }
+        }
+
         await client.query(`
           INSERT INTO khan_academy_resources (stable_id, title, resource_type, key, time_minutes)
           VALUES ($1, $2, $3, $4, $5)
         `, [
           row['stable_id'] || null,
-          row['title'],
+          finalTitle,
           row['resource_type'],
           truncatedKey,
           row['time'] || this.getDefaultTime('KA', row['resource_type'])
@@ -177,6 +193,9 @@ export class DataLoader {
     try {
       await client.query('DELETE FROM jack_westin_resources');
       
+      let carsSectionStarted = false;
+      let loadedCount = 0;
+      
       for (const row of data as any[]) {
         // Handle Excel formula objects for key field
         const keyValue = row['key'];
@@ -184,27 +203,89 @@ export class DataLoader {
           ? keyValue.result 
           : keyValue;
 
-        // Skip rows with null or empty keys
-        if (!key || key === '') {
-          continue;
+        const title = row['title'];
+        const resourceType = row['resource_type'];
+        const timeValue = row['time'];
+        const linkValue = row['link'];
+        
+
+        // Check if we've reached the CARS section
+        if (title && title.toString().includes('CARS (Reading / Comprehesion)')) {
+          carsSectionStarted = true;
+          continue; // Skip the section header
+        }
+
+        // Determine if this is a CARS resource
+        const isCarsResource = carsSectionStarted && 
+          title && 
+          resourceType && 
+          resourceType !== 'aamc_style_passage' && 
+          resourceType !== 'Topic:' &&
+          (timeValue === null || timeValue === 20);
+
+        // For CARS resources, generate a key if it's missing or invalid
+        let finalKey: string;
+        if (isCarsResource && (!key || key === '' || key.toString().includes('[object Object]'))) {
+          // CARS resources are not topic-specific, so use a generic key format
+          // that the parseKey method can handle
+          finalKey = 'CARS.x.x';
+        } else {
+          // Skip rows with null or empty keys for non-CARS resources
+          if (!key || key === '') {
+            continue;
+          }
+          finalKey = key.toString();
+        }
+
+        // Determine the actual resource type and time
+        let actualResourceType: string;
+        let actualTime: number;
+
+        if (isCarsResource) {
+          // For CARS resources, the resource_type field contains the topic
+          // and we need to set a default time since time is null
+          actualResourceType = 'aamc_style_passage'; // CARS passages are still passages
+          actualTime = 20; // Default time for CARS passages based on the image
+        } else {
+          // For regular resources, use the values as-is
+          actualResourceType = resourceType;
+          actualTime = timeValue || this.getDefaultTime('JW', resourceType);
         }
 
         // Truncate key if it's too long for the database constraint
-        const truncatedKey = key.toString().substring(0, 20);
+        const truncatedKey = finalKey.substring(0, 20);
+
+        // Extract URL from link object and concatenate with title
+        let finalTitle = title;
+        if (linkValue) {
+          let url = '';
+          if (typeof linkValue === 'object' && linkValue.hyperlink) {
+            url = linkValue.hyperlink;
+          } else if (typeof linkValue === 'string' && linkValue.startsWith('http')) {
+            url = linkValue;
+          }
+          
+          if (url) {
+            finalTitle = `${title} - ${url}`;
+          }
+        }
 
         await client.query(`
-          INSERT INTO jack_westin_resources (stable_id, title, resource_type, key, time_minutes)
-          VALUES ($1, $2, $3, $4, $5)
+          INSERT INTO jack_westin_resources (stable_id, title, resource_type, key, time_minutes, cars_resource)
+          VALUES ($1, $2, $3, $4, $5, $6)
         `, [
           row['stable_id'] || null,
-          row['title'],
-          row['resource_type'],
+          finalTitle,
+          actualResourceType,
           truncatedKey,
-          row['time'] || this.getDefaultTime('JW', row['resource_type'])
+          actualTime,
+          isCarsResource // Add a flag to identify CARS resources
         ]);
+        
+        loadedCount++;
       }
       
-      console.log(`✅ Loaded ${data.length} Jack Westin resources`);
+      console.log(`✅ Loaded ${loadedCount} Jack Westin resources`);
     } finally {
       client.release();
     }

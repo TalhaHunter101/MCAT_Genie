@@ -1,4 +1,5 @@
 import { initializeDatabase, testConnection } from './connection';
+import { migrateColumns } from './migrate-columns';
 
 async function migrate() {
   try {
@@ -13,6 +14,9 @@ async function migrate() {
 
     // Initialize schema
     await initializeDatabase();
+    
+    // Run column migrations for URL concatenation
+    await migrateColumns();
     
     console.log('✅ Database migrations completed successfully');
   } catch (error) {
