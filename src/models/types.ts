@@ -21,7 +21,11 @@ export interface BaseResource {
 }
 
 export interface KhanAcademyResource extends BaseResource {
-  resource_type: 'Videos' | 'Articles' | 'Practice Passages' | 'Discrete Practice Questions';
+  resource_type:
+    | "Videos"
+    | "Articles"
+    | "Practice Passages"
+    | "Discrete Practice Questions";
 }
 
 export interface KaplanResource extends BaseResource {
@@ -29,7 +33,11 @@ export interface KaplanResource extends BaseResource {
 }
 
 export interface JackWestinResource extends BaseResource {
-  resource_type: 'aamc_style_passage' | 'fundamental_passage' | 'aamc_style_discrete' | 'fundamental_discrete';
+  resource_type:
+    | "aamc_style_passage"
+    | "fundamental_passage"
+    | "aamc_style_discrete"
+    | "fundamental_discrete";
 }
 
 export interface UWorldResource extends BaseResource {
@@ -37,11 +45,16 @@ export interface UWorldResource extends BaseResource {
 }
 
 export interface AAMCResource extends BaseResource {
-  resource_type: 'Question Pack' | 'Full Length';
+  resource_type: "Question Pack" | "Full Length";
   pack_name?: string;
 }
 
-export type Resource = KhanAcademyResource | KaplanResource | JackWestinResource | UWorldResource | AAMCResource;
+export type Resource =
+  | KhanAcademyResource
+  | KaplanResource
+  | JackWestinResource
+  | UWorldResource
+  | AAMCResource;
 
 export interface UsedResource {
   id: number;
@@ -60,21 +73,32 @@ export interface ScheduleRequest {
   fl_weekday: string;
 }
 
+export interface ResourceItem {
+  title: string;
+  topic_number: string;
+  topic_title: string;
+  provider: string;
+  time_minutes: number;
+  url?: string;
+  high_yield?: boolean;
+  resource_type?: string;
+}
+
 export interface ScheduleDay {
   date: string;
-  kind: 'break' | 'study' | 'full_length';
+  kind: "break" | "study" | "full_length";
   phase?: number;
   provider?: string;
   name?: string;
   blocks?: {
-    science_content?: string[];
-    science_discretes?: string[];
-    science_passages?: string[];
-    uworld_set?: string[];
-    extra_discretes?: string[];
-    aamc_sets?: string[];
-    aamc_CARS_passages?: string[];
-    cars?: string[];
+    science_content?: ResourceItem[];
+    science_discretes?: ResourceItem[];
+    science_passages?: ResourceItem[];
+    uworld_set?: ResourceItem[];
+    extra_discretes?: ResourceItem[];
+    aamc_sets?: ResourceItem[];
+    aamc_CARS_passages?: ResourceItem[];
+    cars?: ResourceItem[];
     written_review_minutes: number;
     total_resource_minutes: number;
   };
@@ -114,18 +138,18 @@ export interface TimeFit {
 }
 
 export const TIME_FITS: Record<string, TimeFit> = {
-  'KA video': { target: 15, band_min: 10, band_max: 15 },
-  'Kaplan': { target: 30, band_min: 20, band_max: 30 },
-  'Discrete': { target: 30, band_min: 25, band_max: 35 },
-  'Passage': { target: 25, band_min: 20, band_max: 25 },
-  'UWorld 10Q': { target: 30, band_min: 25, band_max: 35 }
+  "KA video": { target: 15, band_min: 10, band_max: 15 },
+  Kaplan: { target: 30, band_min: 20, band_max: 30 },
+  Discrete: { target: 30, band_min: 25, band_max: 35 },
+  Passage: { target: 25, band_min: 20, band_max: 25 },
+  "UWorld 10Q": { target: 30, band_min: 25, band_max: 35 },
 };
 
 export const DEFAULT_TIMINGS: Record<string, number> = {
-  'KA video': 12,
-  'KA article': 10,
-  'Kaplan section': 30,
-  'Discrete': 30,
-  'Passage': 25,
-  'UWorld 10Q': 30
+  "KA video": 12,
+  "KA article": 10,
+  "Kaplan section": 30,
+  Discrete: 30,
+  Passage: 25,
+  "UWorld 10Q": 30,
 };
