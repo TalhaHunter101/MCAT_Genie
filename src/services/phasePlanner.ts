@@ -50,7 +50,7 @@ export class PhasePlanner {
 
     return {
       title: cleanTitle,
-      topic_number: anchor.key,
+      topic_number: resource.key,
       topic_title: anchor.concept_title,
       provider: selection.provider,
       time_minutes: selection.time_minutes,
@@ -143,13 +143,18 @@ export class PhasePlanner {
           !sameDayUsed.has(
             ResourceSelectionUtils.getResourceUid(selection.resource)
           ) &&
+          !usedResources.has(
+            ResourceSelectionUtils.getResourceUid(selection.resource)
+          ) &&
           240 - remainingTime < targetTime
         ) {
           blocks[blockName].push(this.convertToResourceItem(selection, anchor));
           remainingTime -= selection.time_minutes;
-          sameDayUsed.add(
-            ResourceSelectionUtils.getResourceUid(selection.resource)
+          const resourceUid = ResourceSelectionUtils.getResourceUid(
+            selection.resource
           );
+          sameDayUsed.add(resourceUid);
+          usedResources.add(resourceUid);
           await this.resourceManager.markResourceAsUsed(
             selection.resource,
             selection.provider,
@@ -159,7 +164,7 @@ export class PhasePlanner {
       }
     }
 
-    // If still not at target, try fallback resources (allow repetition if necessary)
+    // If still not at target, try fallback resources (but still respect never-repeat rule)
     if (240 - remainingTime < targetTime && remainingTime >= 10) {
       const fallbackResources = [
         {
@@ -182,14 +187,14 @@ export class PhasePlanner {
       for (const { resources, blockName, slotType } of fallbackResources) {
         if (240 - remainingTime >= targetTime) break;
 
-        // Get selections without strict filtering (allow repetition)
+        // Get selections while still respecting never-repeat rule
         const fallbackSelections =
           ResourceSelectionUtils.selectResourcesForSlot(
             anchor,
             slotType,
             phase,
             resources,
-            new Set(),
+            usedResources,
             remainingTime,
             this.topics,
             sameDayUsed
@@ -289,13 +294,18 @@ export class PhasePlanner {
           !sameDayUsed.has(
             ResourceSelectionUtils.getResourceUid(selection.resource)
           ) &&
+          !usedResources.has(
+            ResourceSelectionUtils.getResourceUid(selection.resource)
+          ) &&
           240 - remainingTime < targetTime
         ) {
           blocks[blockName].push(this.convertToResourceItem(selection, anchor));
           remainingTime -= selection.time_minutes;
-          sameDayUsed.add(
-            ResourceSelectionUtils.getResourceUid(selection.resource)
+          const resourceUid = ResourceSelectionUtils.getResourceUid(
+            selection.resource
           );
+          sameDayUsed.add(resourceUid);
+          usedResources.add(resourceUid);
           await this.resourceManager.markResourceAsUsed(
             selection.resource,
             selection.provider,
