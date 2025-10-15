@@ -9,6 +9,7 @@ A Node.js/TypeScript HTTP service that generates personalized MCAT study schedul
 - **Zero Resource Repetition**: Strict enforcement ensures Khan Academy, Kaplan, and Jack Westin resources are used only once
 - **High-Yield Prioritization**: Focuses on high-yield content first, with intelligent fallback to low-yield
 - **Complex Selection Algorithm**: Multi-criteria resource selection with specificity matching and time optimization
+- **Supply‑Aware Anchor Rotation**: Per‑category pointers with availability checks prevent early “exhaustion” of a single concept/subtopic
 - **Full Length Integration**: Schedules 6 AAMC full-length exams evenly throughout the study period
 - **Database Persistence**: Uses PostgreSQL to store resources and track usage across schedules
 - **Deterministic Output**: Same inputs always produce identical schedules
@@ -216,6 +217,7 @@ curl "http://localhost:3000/full-plan?start_date=2025-09-01&test_date=2026-01-15
 
 - ✅ Kaplan sections must have matching Khan Academy content (same topic key)
 - ✅ All resources (KA, Kaplan, JW) used **once only** across entire P1+P2
+- ✅ Anchors rotate within each category and skip depleted concepts/subtopics
 - ✅ High-yield content prioritized; low-yield only if high-yield exhausted
 - ✅ CARS passages are Jack Westin only (Phase 1)
 
@@ -286,10 +288,11 @@ The system uses a sophisticated 7-tier selection process:
 1. **Slot Type Filtering**: Match resource type to requirements
 2. **High-Yield Prioritization**: Prioritize high-yield content (Phases 1-2)
 3. **Never-Repeat Filtering**: Strict enforcement for KA/Kaplan/JW
-4. **Same-Day Deduplication**: Prevent duplicates within same day
-5. **Phase-Specific Filtering**: Phase 2 excludes Phase 1 resources
-6. **Multi-Criteria Sorting**: Specificity → time-fit → provider → alphabetical
-7. **Time Budget Packing**: Fill remaining time up to target
+4. **Supply Check for Anchors**: Skip anchors with no unused resources before selection
+5. **Same-Day Deduplication**: Prevent duplicates within same day
+6. **Phase-Specific Filtering**: Phase 2 excludes Phase 1 resources
+7. **Multi-Criteria Sorting**: Specificity → time-fit → provider → alphabetical
+8. **Time Budget Packing**: Fill remaining time up to target
 
 ### Database Schema
 
